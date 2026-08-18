@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://djsyociolp2ff"]
+
+[ext_resource type="PackedScene" uid="uid://li4wyutq6dfq" path="res://Models/Objects/Coin.glb" id="1_avlg3"]
+[ext_resource type="Texture2D" uid="uid://7e4u2xlpa5qn" path="res://Textures/Flares/Flare1.png" id="2_ny7q1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0i88t"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ckb4l"]
+transparency = 4
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0.27058825)
+albedo_texture = ExtResource("2_ny7q1")
+billboard_mode = 1
+billboard_keep_scale = true
+proximity_fade_enabled = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_0i88t"]
+material = SubResource("StandardMaterial3D_ckb4l")
+size = Vector2(3, 3)
+
+[sub_resource type="Animation" id="Animation_ny7q1"]
+resource_name = "Idle"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.2831855, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_w44bc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mhthk"]
+_data = {
+&"Idle": SubResource("Animation_ny7q1"),
+&"RESET": SubResource("Animation_w44bc")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_avlg3"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ny7q1"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_0i88t"]
+states/Idle/node = SubResource("AnimationNodeAnimation_avlg3")
+states/Idle/position = Vector2(544, 100)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_ny7q1")]
+
+[node name="Coin" type="Node3D" unique_id=1715068151]
+
+[node name="Area3D" type="Area3D" parent="." unique_id=854140410]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1994064286]
+shape = SubResource("BoxShape3D_0i88t")
+
+[node name="Model" parent="." unique_id=2113881109 instance=ExtResource("1_avlg3")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Model" unique_id=674673961]
+mesh = SubResource("QuadMesh_0i88t")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=382164938]
+libraries/ = SubResource("AnimationLibrary_mhthk")
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1411196504]
+tree_root = SubResource("AnimationNodeStateMachine_0i88t")
+anim_player = NodePath("../AnimationPlayer")
+
+[editable path="Model"]
