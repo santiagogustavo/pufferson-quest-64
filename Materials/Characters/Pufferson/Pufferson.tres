@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ofbk3bpwrhln"]
+
+[ext_resource type="Texture2D" uid="uid://bv0uum8bbu57s" path="res://Textures/Characters/Pufferson/Albedo.png" id="1_0q7kj"]
+[ext_resource type="Texture2D" uid="uid://cqop88yypvpls" path="res://Textures/Characters/Pufferson/AO.png" id="2_v3xel"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_0q7kj")
+rim = 0.28
+ao_enabled = true
+ao_light_affect = 1.0
+ao_texture = ExtResource("2_v3xel")

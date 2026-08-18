@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://d00t2qon6434o"]
+
+[ext_resource type="Texture2D" uid="uid://dwkc7rmg7xd1o" path="res://Textures/Objects/StreetLamp/Albedo.png" id="1_v4lvw"]
+[ext_resource type="Texture2D" uid="uid://bp1q8ru4x7bi8" path="res://Textures/Objects/StreetLamp/Emission.png" id="2_3lsk2"]
+
+[resource]
+albedo_texture = ExtResource("1_v4lvw")
+emission_enabled = true
+emission_texture = ExtResource("2_3lsk2")
