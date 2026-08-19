@@ -1,0 +1,222 @@
+[gd_scene format=3 uid="uid://bwtq3rmdvap48"]
+
+[ext_resource type="Shader" uid="uid://mhflhig4acni" path="res://Materials/Shaders/Outline.gdshader" id="1_5gb74"]
+[ext_resource type="Script" uid="uid://dfx800t81fd8m" path="res://Scripts/UI/HUD.gd" id="1_7ap5u"]
+[ext_resource type="Texture2D" uid="uid://cbe0cpxaxqvho" path="res://Textures/UI/HUD/Coin.png" id="1_ei6vf"]
+[ext_resource type="FontFile" uid="uid://dpibfaqd1k33i" path="res://Fonts/MagicVintage.ttf" id="2_4ms3g"]
+[ext_resource type="Shader" uid="uid://cwgayrdd048ak" path="res://Materials/Shaders/Skew.gdshader" id="3_5gb74"]
+[ext_resource type="Texture2D" uid="uid://d2nnyd5jdq6at" path="res://Textures/UI/Puff.png" id="3_edklb"]
+[ext_resource type="Texture2D" uid="uid://bmmpmqi1o32jd" path="res://Textures/UI/HUD/Hourglass.png" id="3_ljlyi"]
+[ext_resource type="Texture2D" uid="uid://bnbv7ip2q7pp7" path="res://Textures/UI/HUD/Quill.png" id="7_ljlyi"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ljlyi"]
+shader = ExtResource("1_5gb74")
+shader_parameter/thickness = 8.00000038
+shader_parameter/ring_count = 32
+shader_parameter/ring_offset = 0.0
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/border_clipping_fix = true
+shader_parameter/aspect_ratio = 1.0
+shader_parameter/square_border = false
+shader_parameter/offset = Vector2(2, -4)
+shader_parameter/max_or_add = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cwoh6"]
+shader = ExtResource("3_5gb74")
+shader_parameter/skew_x = 0.0
+shader_parameter/skew_y = 0.15
+
+[sub_resource type="LabelSettings" id="LabelSettings_hdl8n"]
+font = ExtResource("2_4ms3g")
+font_size = 64
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 12
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(-4, 4)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7ap5u"]
+shader = ExtResource("1_5gb74")
+shader_parameter/thickness = 8.00000038
+shader_parameter/ring_count = 32
+shader_parameter/ring_offset = 0.0
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/border_clipping_fix = true
+shader_parameter/aspect_ratio = 1.0
+shader_parameter/square_border = false
+shader_parameter/offset = Vector2(-2, -4)
+shader_parameter/max_or_add = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5gb74"]
+shader = ExtResource("3_5gb74")
+shader_parameter/skew_x = 0.0
+shader_parameter/skew_y = -0.15
+
+[sub_resource type="LabelSettings" id="LabelSettings_0i88t"]
+font = ExtResource("2_4ms3g")
+font_size = 64
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 12
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(4, 4)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hdl8n"]
+shader = ExtResource("1_5gb74")
+shader_parameter/thickness = 6.000000285
+shader_parameter/ring_count = 32
+shader_parameter/ring_offset = 0.0
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/border_clipping_fix = true
+shader_parameter/aspect_ratio = 1.0
+shader_parameter/square_border = false
+shader_parameter/offset = Vector2(-4, -4)
+shader_parameter/max_or_add = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d4sq4"]
+shader = ExtResource("1_5gb74")
+shader_parameter/thickness = 24.00000114
+shader_parameter/ring_count = 16
+shader_parameter/ring_offset = 0.0
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/border_clipping_fix = true
+shader_parameter/aspect_ratio = 1.0
+shader_parameter/square_border = false
+shader_parameter/offset = Vector2(-6, -12)
+shader_parameter/max_or_add = false
+
+[node name="HUD" type="CanvasLayer" unique_id=1923480852]
+layer = 8
+script = ExtResource("1_7ap5u")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=948261283]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="Control" type="Control" parent="MarginContainer" unique_id=1695539464]
+layout_mode = 2
+
+[node name="TimeContainer" type="HBoxContainer" parent="MarginContainer/Control" unique_id=558324476]
+layout_mode = 1
+offset_right = 229.0
+offset_bottom = 110.0
+scale = Vector2(0.5, 0.5)
+theme_override_constants/separation = 0
+
+[node name="Hourglass" type="TextureRect" parent="MarginContainer/Control/TimeContainer" unique_id=1689480563]
+material = SubResource("ShaderMaterial_ljlyi")
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+texture = ExtResource("3_ljlyi")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="MarginContainer/Control/TimeContainer" unique_id=76002376]
+material = SubResource("ShaderMaterial_cwoh6")
+layout_mode = 2
+text = "00:00"
+label_settings = SubResource("LabelSettings_hdl8n")
+
+[node name="CoinsContainer" type="HBoxContainer" parent="MarginContainer/Control" unique_id=1543523540]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -190.0
+offset_bottom = 64.0
+grow_horizontal = 0
+scale = Vector2(0.75, 0.75)
+pivot_offset_ratio = Vector2(1, 0)
+theme_override_constants/separation = 16
+
+[node name="Coin" type="TextureRect" parent="MarginContainer/Control/CoinsContainer" unique_id=2023557055]
+material = SubResource("ShaderMaterial_7ap5u")
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("1_ei6vf")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="Control" type="Control" parent="MarginContainer/Control/CoinsContainer" unique_id=2077507770]
+custom_minimum_size = Vector2(110, 32)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="MarginContainer/Control/CoinsContainer/Control" unique_id=1140595388]
+material = SubResource("ShaderMaterial_5gb74")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1.0
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "000"
+label_settings = SubResource("LabelSettings_0i88t")
+
+[node name="LifeContainer" type="HBoxContainer" parent="MarginContainer/Control" unique_id=1704941185]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -161.99994
+offset_top = 61.0
+offset_bottom = 171.0
+grow_horizontal = 0
+scale = Vector2(0.75, 0.75)
+pivot_offset_ratio = Vector2(1, 0)
+theme_override_constants/separation = 24
+
+[node name="Quill" type="TextureRect" parent="MarginContainer/Control/LifeContainer" unique_id=1090797299]
+material = SubResource("ShaderMaterial_hdl8n")
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("7_ljlyi")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="Control" type="Control" parent="MarginContainer/Control/LifeContainer" unique_id=385009250]
+visible = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="Pufferson" type="TextureRect" parent="MarginContainer/Control/LifeContainer/Control" unique_id=655205482]
+material = SubResource("ShaderMaterial_d4sq4")
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -13.9999695
+offset_top = -33.666668
+offset_right = 15.944305
+offset_bottom = -9.666668
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_edklb")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="MarginContainer/Control/LifeContainer" unique_id=2081666862]
+material = SubResource("ShaderMaterial_5gb74")
+layout_mode = 2
+text = "00"
+label_settings = SubResource("LabelSettings_0i88t")

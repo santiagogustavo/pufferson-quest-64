@@ -105,6 +105,7 @@ states/FadeIn/position = Vector2(529, 100)
 transitions = ["Start", "FadeIn", SubResource("AnimationNodeStateMachineTransition_083g7")]
 
 [node name="Transition" type="CanvasLayer" unique_id=400100847]
+layer = 10
 
 [node name="Control" type="Control" parent="." unique_id=1593618071]
 layout_mode = 3

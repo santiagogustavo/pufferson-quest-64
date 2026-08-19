@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cck21f46wp4lg"]
+
+[ext_resource type="Texture2D" uid="uid://7e4u2xlpa5qn" path="res://Textures/Flares/Flare1.png" id="1_ceqry"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ckb4l"]
+transparency = 4
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0.27058825)
+albedo_texture = ExtResource("1_ceqry")
+billboard_mode = 1
+billboard_keep_scale = true
+proximity_fade_enabled = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_0i88t"]
+material = SubResource("StandardMaterial3D_ckb4l")
+size = Vector2(3, 3)
+
+[node name="LittleYellowFlare" type="MeshInstance3D" unique_id=986765999]
+mesh = SubResource("QuadMesh_0i88t")
