@@ -1,23 +1,13 @@
 [gd_scene format=3 uid="uid://djsyociolp2ff"]
 
 [ext_resource type="PackedScene" uid="uid://li4wyutq6dfq" path="res://Models/Objects/Coin.glb" id="1_avlg3"]
-[ext_resource type="Texture2D" uid="uid://7e4u2xlpa5qn" path="res://Textures/Flares/Flare1.png" id="2_ny7q1"]
+[ext_resource type="Script" uid="uid://cnacj6vufdecf" path="res://Scripts/Objects/Coin.gd" id="1_sdgg0"]
+[ext_resource type="PackedScene" uid="uid://cck21f46wp4lg" path="res://Prefabs/Objects/LittleYellowFlare.tscn" id="2_ny7q1"]
+[ext_resource type="Texture2D" uid="uid://bfijn08jwx41i" path="res://Textures/UI/round-star.png" id="3_mhthk"]
+[ext_resource type="AudioStream" uid="uid://ep0u5s8lankd" path="res://Sounds/Objects/Coin/Pickup1.wav" id="3_w44bc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0i88t"]
 size = Vector3(0.5, 0.5, 0.5)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ckb4l"]
-transparency = 4
-shading_mode = 0
-albedo_color = Color(1, 1, 1, 0.27058825)
-albedo_texture = ExtResource("2_ny7q1")
-billboard_mode = 1
-billboard_keep_scale = true
-proximity_fade_enabled = true
-
-[sub_resource type="QuadMesh" id="QuadMesh_0i88t"]
-material = SubResource("StandardMaterial3D_ckb4l")
-size = Vector2(3, 3)
 
 [sub_resource type="Animation" id="Animation_ny7q1"]
 resource_name = "Idle"
@@ -36,6 +26,72 @@ tracks/0/keys = {
 "values": [Vector3(0, 0, 0), Vector3(0, 6.2831855, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_mhthk"]
+resource_name = "Pickup"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SFX:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Stars:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Model/Armature:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Model/LittleYellowFlare:transparency")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
 [sub_resource type="Animation" id="Animation_w44bc"]
 length = 0.001
 tracks/0/type = "value"
@@ -50,27 +106,139 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SFX:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Stars:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Model/Armature:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Model/LittleYellowFlare:transparency")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mhthk"]
 _data = {
 &"Idle": SubResource("Animation_ny7q1"),
+&"Pickup": SubResource("Animation_mhthk"),
 &"RESET": SubResource("Animation_w44bc")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_avlg3"]
 animation = &"Idle"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mhthk"]
+animation = &"Pickup"
+
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ny7q1"]
 advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sdgg0"]
+advance_mode = 2
+advance_condition = &"is_pickup"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_0i88t"]
 states/Idle/node = SubResource("AnimationNodeAnimation_avlg3")
 states/Idle/position = Vector2(544, 100)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_ny7q1")]
+states/Pickup/node = SubResource("AnimationNodeAnimation_mhthk")
+states/Pickup/position = Vector2(544, -44)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_ny7q1"), "Idle", "Pickup", SubResource("AnimationNodeStateMachineTransition_sdgg0")]
+graph_offset = Vector2(108, -80)
+
+[sub_resource type="Curve" id="Curve_rvobb"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_sdgg0"]
+curve = SubResource("Curve_rvobb")
+
+[sub_resource type="Curve" id="Curve_huqb7"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_eqjdb"]
+curve = SubResource("Curve_huqb7")
+
+[sub_resource type="Curve" id="Curve_sdgg0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.5), 0.0, 0.0, 0, 0]
+point_count = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_mhthk"]
+curve = SubResource("Curve_sdgg0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0i88t"]
+lifetime_randomness = 1.0
+radial_velocity_min = 0.99997765
+radial_velocity_max = 1.9999776
+radial_velocity_curve = SubResource("CurveTexture_eqjdb")
+gravity = Vector3(0, 0, 0)
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_mhthk")
+alpha_curve = SubResource("CurveTexture_sdgg0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3si4x"]
+transparency = 4
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.88235295, 0.8235294, 0.24705882, 1)
+albedo_texture = ExtResource("3_mhthk")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_ckb4l"]
+material = SubResource("StandardMaterial3D_3si4x")
+size = Vector2(0.1, 0.1)
 
 [node name="Coin" type="Node3D" unique_id=1715068151]
+script = ExtResource("1_sdgg0")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=854140410]
+collision_layer = 4
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1994064286]
 shape = SubResource("BoxShape3D_0i88t")
@@ -78,14 +246,29 @@ shape = SubResource("BoxShape3D_0i88t")
 [node name="Model" parent="." unique_id=2113881109 instance=ExtResource("1_avlg3")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Model" unique_id=674673961]
-mesh = SubResource("QuadMesh_0i88t")
+[node name="LittleYellowFlare" parent="Model" unique_id=986765999 instance=ExtResource("2_ny7q1")]
+transform = Transform3D(1.15, 0, 0, 0, 1.15, 0, 0, 0, 1.15, 0, 0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=382164938]
 libraries/ = SubResource("AnimationLibrary_mhthk")
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=1411196504]
+callback_mode_discrete = 0
 tree_root = SubResource("AnimationNodeStateMachine_0i88t")
 anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/is_pickup = false
+
+[node name="Stars" type="GPUParticles3D" parent="." unique_id=1466239390]
+amount = 15
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_0i88t")
+draw_pass_1 = SubResource("QuadMesh_ckb4l")
+
+[node name="SFX" type="AudioStreamPlayer3D" parent="." unique_id=831019023]
+stream = ExtResource("3_w44bc")
+volume_db = -20.0
+bus = &"Effects"
 
 [editable path="Model"]

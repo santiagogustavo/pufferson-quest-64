@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://cl6fqp07wrl63"]
 
 [ext_resource type="Material" uid="uid://d00t2qon6434o" path="res://Materials/Objects/StreetLamp.tres" id="1_d4kuk"]
+[ext_resource type="PackedScene" uid="uid://cck21f46wp4lg" path="res://Prefabs/Objects/LittleYellowFlare.tscn" id="2_kpsfr"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_5x4j8"]
 _surfaces = [{
@@ -56,6 +57,9 @@ points = PackedVector3Array(0.23197348, -0.0510207, -0.49950713, 0.5911786, 0.18
 [node name="BezierCurve_streetLamp4" type="MeshInstance3D" parent="." unique_id=182684307]
 transform = Transform3D(1, 0, 0, 0, -3.5762787e-07, -0.99999994, 0, 0.99999994, -3.5762787e-07, 0.5130259, 2.9276757, -0.03488159)
 mesh = SubResource("ArrayMesh_s4v7s")
+
+[node name="LittleYellowFlare" parent="BezierCurve_streetLamp4" unique_id=986765999 instance=ExtResource("2_kpsfr")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 2.2737371e-14, 0, -2.2737371e-14, 0.4, 0.3780868, 1.4901161e-07, 0.42072058)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="BezierCurve_streetLamp4" unique_id=972399399]
 

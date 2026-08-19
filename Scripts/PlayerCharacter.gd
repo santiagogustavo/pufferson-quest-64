@@ -6,6 +6,7 @@ class_name PlayerCharacter
 @onready var model: Node3D = $Model
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var camera_pivot: CameraPivot = $CameraPivot
+@onready var voice: AudioStream = load("uid://b154fct8cmqtk")
 
 var model_pivot: Node3D
 
