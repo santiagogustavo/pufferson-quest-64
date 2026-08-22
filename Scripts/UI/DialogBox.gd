@@ -4,7 +4,7 @@ class_name DialogBox
 @export var speaker_avatar: Texture2D
 @export var speaker_name: String
 @export var speaker_text: String
-@export var bubble_time: float = 3.0
+@export var bubble_time: float = 1.0
 @export var default_speaking_time: float = 2.0
 @export var autoplay: bool = true
 @export var voice_stream: AudioStream

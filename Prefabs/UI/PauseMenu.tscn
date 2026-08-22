@@ -6,7 +6,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_0i88t"]
 font = ExtResource("1_7y3gh")
 font_size = 40
-font_color = Color(0.47058824, 0.6392157, 0.60784316, 1)
+font_color = Color(0.6784314, 1, 0.9411765, 1)
 outline_size = 8
 outline_color = Color(0.21960784, 0.12941177, 0.31764707, 1)
 shadow_size = 16
@@ -25,7 +25,7 @@ metadata/_snap_enabled = true
 
 [sub_resource type="Animation" id="Animation_6gccj"]
 resource_name = "PopIn"
-length = 0.19999999999999998
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -65,7 +65,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_7y3gh"]
 resource_name = "PopOut"
-length = 0.19999999999999998
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true

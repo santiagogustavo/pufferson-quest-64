@@ -2,7 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://bkgbv3p70i2r3" path="res://Fonts/MagicRomance.ttf" id="1_7q33j"]
 [ext_resource type="Script" uid="uid://du1meru6bo546" path="res://Scripts/UI/DialogBox.gd" id="1_31cp6"]
-[ext_resource type="Texture2D" uid="uid://bjcddkif4xobe" path="res://Textures/UI/DialogBox2.png" id="1_5243g"]
+[ext_resource type="Texture2D" uid="uid://bjcddkif4xobe" path="res://Textures/UI/DialogBox.png" id="1_5243g"]
 [ext_resource type="FontFile" uid="uid://dqjtgmaxvn45n" path="res://Fonts/Mermaid.ttf" id="3_5243g"]
 [ext_resource type="Script" uid="uid://dujci3mn5u362" path="res://Scripts/UI/LabelTyper.gd" id="5_54nx3"]
 [ext_resource type="Texture2D" uid="uid://d2nnyd5jdq6at" path="res://Textures/UI/Puff.png" id="7_78pa0"]
