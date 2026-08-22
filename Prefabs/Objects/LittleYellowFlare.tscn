@@ -16,4 +16,5 @@ material = SubResource("StandardMaterial3D_ckb4l")
 size = Vector2(3, 3)
 
 [node name="LittleYellowFlare" type="MeshInstance3D" unique_id=986765999]
+cast_shadow = 0
 mesh = SubResource("QuadMesh_0i88t")

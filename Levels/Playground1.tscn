@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cl6fqp07wrl63" path="res://Prefabs/Objects/StreetLamp.tscn" id="5_yn0hv"]
 [ext_resource type="PackedScene" uid="uid://djsyociolp2ff" path="res://Prefabs/Objects/Coin.tscn" id="7_y6s0p"]
 [ext_resource type="Script" uid="uid://c1cscsrs4kunt" path="res://Levels/DebugDialogArea3D.gd" id="12_7ihrt"]
+[ext_resource type="PackedScene" uid="uid://bctw4ncnb0jnj" path="res://Prefabs/Objects/Quill.tscn" id="13_orfgt"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_y6s0p"]
 panorama = ExtResource("2_v1anj")
@@ -27,15 +28,17 @@ ambient_light_source = 3
 glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0i88t"]
+diffuse_mode = 3
+specular_mode = 1
 albedo_texture = ExtResource("2_8erxi")
-uv1_scale = Vector3(5, 5, 5)
+uv1_scale = Vector3(10, 10, 10)
 
 [sub_resource type="BoxMesh" id="BoxMesh_0i88t"]
 material = SubResource("StandardMaterial3D_0i88t")
-size = Vector3(20, 0.1, 20)
+size = Vector3(50, 0.1, 50)
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_bxrmi"]
-points = PackedVector3Array(-10, -0.05, -10, -10, 0.05, -10, 10, -0.05, -10, -10, -0.05, 10, -10, 0.05, 10, 10, 0.05, -10, 10, -0.05, 10, 10, 0.05, 10)
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7ihrt"]
+points = PackedVector3Array(-25, -0.05, -25, -25, 0.05, -25, 25, -0.05, -25, -25, -0.05, 25, -25, 0.05, 25, 25, 0.05, -25, 25, -0.05, 25, 25, 0.05, 25)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yn0hv"]
 albedo_texture = ExtResource("4_24vic")
@@ -48,7 +51,27 @@ material = SubResource("StandardMaterial3D_yn0hv")
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_yn0hv"]
 points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ihrt"]
+albedo_texture = ExtResource("4_24vic")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_orfgt"]
+material = SubResource("StandardMaterial3D_7ihrt")
+size = Vector3(2, 2, 2)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2w3hq"]
+points = PackedVector3Array(1, 1, 1, 1, 1, -1, -1, 1, 1, 1, -1, 1, 1, -1, -1, -1, 1, -1, -1, -1, 1, -1, -1, -1)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_0i88t"]
+size = Vector3(5, 5, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3si4x"]
+transparency = 4
+cull_mode = 2
+albedo_color = Color(0, 1, 0.8509804, 0.13725491)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ckb4l"]
+material = SubResource("StandardMaterial3D_3si4x")
 size = Vector3(5, 5, 5)
 
 [node name="Playground1" type="Node3D" unique_id=182431723]
@@ -71,27 +94,35 @@ environment = SubResource("Environment_yn0hv")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 mesh = SubResource("BoxMesh_0i88t")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=595462563]
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=1608501065]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=753333337]
-shape = SubResource("ConvexPolygonShape3D_bxrmi")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=1784182818]
+shape = SubResource("ConvexPolygonShape3D_7ihrt")
 
 [node name="Pufferson" parent="." unique_id=1657517756 instance=ExtResource("1_bxrmi")]
-metadata/_edit_group_ = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2048826622]
 transform = Transform3D(0.8660254, -0.3535534, 0.35355335, 0, 0.7071067, 0.7071068, -0.5, -0.61237246, 0.61237234, 0, 3.804892, 0)
 light_energy = 0.25
 shadow_enabled = true
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=778033830]
+[node name="Box" type="MeshInstance3D" parent="." unique_id=778033830]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 3)
 mesh = SubResource("BoxMesh_24vic")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2" unique_id=2028998843]
+[node name="StaticBody3D" type="StaticBody3D" parent="Box" unique_id=2028998843]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D" unique_id=1381640991]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box/StaticBody3D" unique_id=1381640991]
 shape = SubResource("ConvexPolygonShape3D_yn0hv")
+
+[node name="Box2" type="MeshInstance3D" parent="." unique_id=9338828]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 5)
+mesh = SubResource("BoxMesh_orfgt")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Box2" unique_id=917765101]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box2/StaticBody3D" unique_id=248331965]
+shape = SubResource("ConvexPolygonShape3D_2w3hq")
 
 [node name="StreetLamp" parent="." unique_id=235758245 instance=ExtResource("5_yn0hv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
@@ -116,10 +147,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 6)
 [node name="Coin5" parent="Coins" unique_id=522713483 instance=ExtResource("7_y6s0p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 7)
 
-[node name="Area3D" type="Area3D" parent="." unique_id=892677834]
+[node name="TalkArea" type="Area3D" parent="." unique_id=892677834]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1, 6)
 collision_mask = 2
 script = ExtResource("12_7ihrt")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1059916833]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TalkArea" unique_id=1059916833]
 shape = SubResource("BoxShape3D_0i88t")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TalkArea" unique_id=334129432]
+mesh = SubResource("BoxMesh_ckb4l")
+
+[node name="Quill" parent="." unique_id=818133055 instance=ExtResource("13_orfgt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7685143, 10)
