@@ -128,7 +128,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -259,6 +259,7 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/is_pickup = false
 
 [node name="Stars" type="GPUParticles3D" parent="." unique_id=1466239390]
+emitting = false
 amount = 15
 lifetime = 0.8
 one_shot = true
@@ -270,5 +271,6 @@ draw_pass_1 = SubResource("QuadMesh_ckb4l")
 stream = ExtResource("3_w44bc")
 volume_db = -20.0
 bus = &"Effects"
+attenuation_filter_db = 0.0
 
 [editable path="Model"]

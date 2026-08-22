@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cpyck3f4haj0g"]
+
+[ext_resource type="Texture2D" uid="uid://dfpnr5sohdjkh" path="res://Textures/Objects/Wand/Albedo.png" id="1_sce2d"]
+
+[resource]
+transparency = 4
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(1, 1, 1, 0.59607846)
+albedo_texture = ExtResource("1_sce2d")
+metallic = 0.5
+roughness = 0.25
+emission_enabled = true
+emission_texture = ExtResource("1_sce2d")

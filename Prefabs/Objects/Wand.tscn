@@ -1,0 +1,260 @@
+[gd_scene format=3 uid="uid://dofvrugre32ha"]
+
+[ext_resource type="PackedScene" uid="uid://cpd5b5400bmkr" path="res://Models/Objects/Wand.glb" id="1_02818"]
+[ext_resource type="Script" uid="uid://clmmr273f51jr" path="res://Scripts/Objects/Wand.gd" id="1_d7gye"]
+[ext_resource type="Material" uid="uid://cpyck3f4haj0g" path="res://Materials/Objects/Wand/WandStar.tres" id="2_87uob"]
+[ext_resource type="Material" uid="uid://b102biy2tgrr0" path="res://Materials/Objects/Wand/WandWood.tres" id="2_xuwea"]
+[ext_resource type="PackedScene" uid="uid://cck21f46wp4lg" path="res://Prefabs/Objects/LittleYellowFlare.tscn" id="3_87uob"]
+[ext_resource type="Material" uid="uid://dj5fym1u6e035" path="res://Materials/Objects/Wand/WandBrass.tres" id="3_xuwea"]
+[ext_resource type="Texture2D" uid="uid://b2h38tsjbumxn" path="res://Textures/Objects/Wand/Spell.png" id="6_jo17x"]
+[ext_resource type="Shader" uid="uid://dgee1ctr8bctm" path="res://Materials/Shaders/Spatial/RotatingBillboard.gdshader" id="6_ypoqb"]
+[ext_resource type="AudioStream" uid="uid://cvxuu4p0ykdni" path="res://Sounds/Objects/Wand/Spell.wav" id="9_fs7sa"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_0i88t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fs7sa"]
+render_priority = 0
+shader = ExtResource("6_ypoqb")
+shader_parameter/tex = ExtResource("6_jo17x")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/scale = 1.0
+shader_parameter/rotation_speed = 10.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_0i88t"]
+random_pitch = 1.0594631
+streams_count = 1
+stream_0/stream = ExtResource("9_fs7sa")
+
+[sub_resource type="Animation" id="Animation_xuwea"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model/Cylinder_001:surface_material_override/0:emission")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Model/Cylinder_001/LittleYellowFlare:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.15, 0.15, 0.75)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Model/Cylinder_001/MeshInstance3D:surface_material_override/0:shader_parameter/albedo_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Model/Cylinder_001/MeshInstance3D:surface_material_override/0:shader_parameter/scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Model/Cylinder_001/MeshInstance3D:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Model/Cylinder_001/OmniLight3D:light_energy")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_q034t"]
+resource_name = "Spell"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model/Cylinder_001:surface_material_override/0:emission")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Model/Cylinder_001/LittleYellowFlare:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.15, 0.15, 0.75), Vector3(0.5, 0.5, 2.5), Vector3(0.15, 0.15, 0.75)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Model/Cylinder_001/MeshInstance3D:surface_material_override/0:shader_parameter/albedo_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Model/Cylinder_001/MeshInstance3D:surface_material_override/0:shader_parameter/scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 1.5, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Model/Cylinder_001/MeshInstance3D:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Model/Cylinder_001/OmniLight3D:light_energy")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.5, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ypoqb"]
+_data = {
+&"RESET": SubResource("Animation_xuwea"),
+&"Spell": SubResource("Animation_q034t")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ypoqb"]
+animation = &"RESET"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jo17x"]
+animation = &"Spell"
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_fs7sa"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_tpfc5"]
+nodes/TimeSeek/node = SubResource("AnimationNodeTimeSeek_fs7sa")
+nodes/TimeSeek/position = Vector2(100, 140)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_jo17x")
+nodes/Animation/position = Vector2(-219, 188)
+node_connections = [&"output", 0, &"TimeSeek", &"TimeSeek", 0, &"Animation"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_l10mp"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_npxa3"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_0i88t"]
+states/RESET/node = SubResource("AnimationNodeAnimation_ypoqb")
+states/RESET/position = Vector2(508, 100)
+states/Spell/node = SubResource("AnimationNodeBlendTree_tpfc5")
+states/Spell/position = Vector2(508, -53)
+transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_l10mp"), "Spell", "RESET", SubResource("AnimationNodeStateMachineTransition_npxa3")]
+graph_offset = Vector2(5, -87)
+
+[node name="Wand" type="Node3D" unique_id=894519083]
+script = ExtResource("1_d7gye")
+
+[node name="Model" parent="." unique_id=487219180 instance=ExtResource("1_02818")]
+
+[node name="Cylinder_002" parent="Model" index="0" unique_id=871278191]
+surface_material_override/0 = ExtResource("2_xuwea")
+
+[node name="Cylinder_001" parent="Model" index="1" unique_id=1711007451]
+surface_material_override/0 = ExtResource("2_87uob")
+
+[node name="LittleYellowFlare" parent="Model/Cylinder_001" index="0" unique_id=986765999 instance=ExtResource("3_87uob")]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.75, 0, 0.47683334, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Model/Cylinder_001" index="1" unique_id=1988067701]
+transform = Transform3D(0.9874949, 0, 0, 0, 0.9874949, 0, 0, 0, 0.9874949, 0, 0.47138503, 0)
+visible = false
+mesh = SubResource("QuadMesh_0i88t")
+surface_material_override/0 = SubResource("ShaderMaterial_fs7sa")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Model/Cylinder_001" index="2" unique_id=252416563]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46428543, 0.06122747)
+light_color = Color(1, 0.91733336, 0.38, 1)
+light_energy = 0.0
+omni_range = 10.0
+
+[node name="Cylinder_003" parent="Model" index="2" unique_id=799214288]
+surface_material_override/0 = ExtResource("3_xuwea")
+
+[node name="SFX" type="AudioStreamPlayer3D" parent="." unique_id=1973199263]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47032428, 0)
+stream = SubResource("AudioStreamRandomizer_0i88t")
+volume_db = -20.0
+bus = &"Effects"
+attenuation_filter_db = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=794101910]
+libraries/ = SubResource("AnimationLibrary_ypoqb")
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1699043991]
+callback_mode_discrete = 0
+tree_root = SubResource("AnimationNodeStateMachine_0i88t")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Spell/TimeSeek/seek_request = -1.0
+
+[editable path="Model"]

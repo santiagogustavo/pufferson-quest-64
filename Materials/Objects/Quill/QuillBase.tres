@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://vkoovjs0my70"]
+
+[ext_resource type="Texture2D" uid="uid://dv58rcddbtmwi" path="res://Textures/Objects/Quill/Albedo.png" id="1_y0psj"]
+
+[resource]
+transparency = 4
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("1_y0psj")

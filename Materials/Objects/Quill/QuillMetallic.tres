@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://4tonla747vva"]
+
+[ext_resource type="Texture2D" uid="uid://dv58rcddbtmwi" path="res://Textures/Objects/Quill/Albedo.png" id="1_0bvid"]
+[ext_resource type="Texture2D" uid="uid://vkuph8d0o1h2" path="res://Textures/Objects/Quill/AO.png" id="2_0bvid"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_0bvid")
+metallic = 0.5
+roughness = 0.25
+ao_enabled = true
+ao_light_affect = 1.0
+ao_texture = ExtResource("2_0bvid")

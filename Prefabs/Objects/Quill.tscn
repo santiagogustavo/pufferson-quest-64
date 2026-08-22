@@ -1,0 +1,428 @@
+[gd_scene format=3 uid="uid://bctw4ncnb0jnj"]
+
+[ext_resource type="Script" uid="uid://oir64e4bortv" path="res://Scripts/Objects/Quill.gd" id="1_81dti"]
+[ext_resource type="PackedScene" uid="uid://bfybaobes0w1p" path="res://Models/Objects/Quill.glb" id="1_y2x23"]
+[ext_resource type="Material" uid="uid://df1qi4wc4fsfk" path="res://Materials/Objects/Quill/QuillGem.tres" id="2_mr6t4"]
+[ext_resource type="Material" uid="uid://vkoovjs0my70" path="res://Materials/Objects/Quill/QuillBase.tres" id="2_ufhn4"]
+[ext_resource type="Material" uid="uid://4tonla747vva" path="res://Materials/Objects/Quill/QuillMetallic.tres" id="3_ufhn4"]
+[ext_resource type="PackedScene" uid="uid://cck21f46wp4lg" path="res://Prefabs/Objects/LittleYellowFlare.tscn" id="5_e3ohv"]
+[ext_resource type="Texture2D" uid="uid://7e4u2xlpa5qn" path="res://Textures/Flares/Flare1.png" id="6_xa1wt"]
+[ext_resource type="Texture2D" uid="uid://bfijn08jwx41i" path="res://Textures/UI/round-star.png" id="7_8nvdl"]
+[ext_resource type="AudioStream" uid="uid://rjfk43sjny2e" path="res://Sounds/Objects/Quill/Pickup2.wav" id="9_xepm4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xa1wt"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8nvdl"]
+transparency = 4
+shading_mode = 0
+albedo_color = Color(0.61960787, 1, 0.95686275, 0.27058825)
+albedo_texture = ExtResource("6_xa1wt")
+billboard_mode = 1
+billboard_keep_scale = true
+proximity_fade_enabled = true
+
+[sub_resource type="Curve" id="Curve_w65ld"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_etsbr"]
+curve = SubResource("Curve_w65ld")
+
+[sub_resource type="Curve" id="Curve_81dti"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.5), 0.0, 0.0, 0, 0]
+point_count = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_3w5fx"]
+curve = SubResource("Curve_81dti")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0i88t"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+gravity = Vector3(0, 0, 0)
+scale_min = 0.25
+scale_curve = SubResource("CurveTexture_3w5fx")
+alpha_curve = SubResource("CurveTexture_etsbr")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3si4x"]
+transparency = 4
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.923, 0.33999997, 1)
+albedo_texture = ExtResource("7_8nvdl")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_ckb4l"]
+material = SubResource("StandardMaterial3D_3si4x")
+size = Vector2(0.25, 0.25)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xepm4"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+radial_velocity_min = 0.99997765
+radial_velocity_max = 0.99997765
+gravity = Vector3(0, 0, 0)
+scale_min = 0.25
+scale_curve = SubResource("CurveTexture_3w5fx")
+alpha_curve = SubResource("CurveTexture_etsbr")
+
+[sub_resource type="Animation" id="Animation_ufhn4"]
+resource_name = "Idle"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.2831855, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Model:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.4666667, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.25, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_wesyq"]
+resource_name = "Pickup"
+length = 2.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SFX:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Stars:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Model/GPUParticles3D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Model/Base:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Model/Feathers:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Model/Gem:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Model/Metallic:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Model/LittleYellowFlare:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.3170525, 1.3170525, 3.2263339), Vector3(0, 0, 0)]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath(".")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(2.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_e3ohv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Model:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SFX:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Stars:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Model/GPUParticles3D:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Model/Base:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Model/Feathers:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Model/Gem:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Model/Metallic:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Model/LittleYellowFlare:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.3170525, 1.3170525, 3.2263339)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xa1wt"]
+_data = {
+&"Idle": SubResource("Animation_ufhn4"),
+&"Pickup": SubResource("Animation_wesyq"),
+&"RESET": SubResource("Animation_e3ohv")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ufhn4"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xepm4"]
+animation = &"Pickup"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e3ohv"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wesyq"]
+advance_mode = 2
+advance_condition = &"is_pickup"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_0i88t"]
+states/Idle/node = SubResource("AnimationNodeAnimation_ufhn4")
+states/Idle/position = Vector2(538, 100)
+states/Pickup/node = SubResource("AnimationNodeAnimation_xepm4")
+states/Pickup/position = Vector2(538, -76)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_e3ohv"), "Idle", "Pickup", SubResource("AnimationNodeStateMachineTransition_wesyq")]
+graph_offset = Vector2(100, -104)
+
+[node name="Quill" type="Node3D" unique_id=818133055]
+script = ExtResource("1_81dti")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=621075335]
+transform = Transform3D(0.058691233, 0, -0.99827623, 0, 0.99999994, 0, 0.99827623, 0, 0.058691233, 0, 0.15675165, 0)
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=2079996046]
+shape = SubResource("BoxShape3D_xa1wt")
+
+[node name="Model" parent="." unique_id=390190385 instance=ExtResource("1_y2x23")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+
+[node name="Base" parent="Model" index="0" unique_id=253054706]
+surface_material_override/0 = ExtResource("2_ufhn4")
+
+[node name="Feathers" parent="Model" index="1" unique_id=779264915]
+surface_material_override/0 = ExtResource("2_ufhn4")
+
+[node name="Gem" parent="Model" index="2" unique_id=670895987]
+surface_material_override/0 = ExtResource("2_mr6t4")
+
+[node name="Metallic" parent="Model" index="3" unique_id=1241429924]
+surface_material_override/0 = ExtResource("3_ufhn4")
+
+[node name="LittleYellowFlare" parent="Model" unique_id=986765999 instance=ExtResource("5_e3ohv")]
+transform = Transform3D(1.3170525, 0, 0, 0, 1.3170525, 0, 0, 0, 3.2263339, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_8nvdl")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Model" unique_id=523292213]
+process_material = SubResource("ParticleProcessMaterial_0i88t")
+draw_pass_1 = SubResource("QuadMesh_ckb4l")
+
+[node name="Stars" type="GPUParticles3D" parent="." unique_id=1612355546]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+emitting = false
+amount = 15
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_xepm4")
+draw_pass_1 = SubResource("QuadMesh_ckb4l")
+
+[node name="SFX" type="AudioStreamPlayer3D" parent="." unique_id=1091283149]
+transform = Transform3D(0.23187223, 0, -0.97274625, 0, 1, 0, 0.97274625, 0, 0.23187223, 0, -0.14820315, 0)
+stream = ExtResource("9_xepm4")
+volume_db = -20.0
+bus = &"Effects"
+attenuation_filter_db = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1111351774]
+libraries/ = SubResource("AnimationLibrary_xa1wt")
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1026091262]
+callback_mode_discrete = 0
+tree_root = SubResource("AnimationNodeStateMachine_0i88t")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/is_pickup = false
+
+[editable path="Model"]
