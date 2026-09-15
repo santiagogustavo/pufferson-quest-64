@@ -1,0 +1,281 @@
+[gd_scene format=3 uid="uid://j6smwguj05oy"]
+
+[ext_resource type="PackedScene" uid="uid://dw23xn85555cf" path="res://Models/Objects/Pot.glb" id="1_062ex"]
+[ext_resource type="Script" uid="uid://de8u67ib7tu8r" path="res://Scripts/Objects/BreakableObject.gd" id="1_hxuax"]
+[ext_resource type="Texture2D" uid="uid://qmdblgwkvbap" path="res://Textures/Particles/Dust.png" id="2_njobo"]
+[ext_resource type="AudioStream" uid="uid://bbce76dn28hxe" path="res://Sounds/Objects/Pot/Break.wav" id="3_tf4rf"]
+[ext_resource type="Texture2D" uid="uid://b61mev5jb1oie" path="res://Textures/Objects/Pot/Albedo.png" id="5_tf4rf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_njobo"]
+size = Vector3(1.0905664, 0.91955125, 1.0905664)
+
+[sub_resource type="Curve" id="Curve_iau3y"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_yqid1"]
+curve = SubResource("Curve_iau3y")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ckb4l"]
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+scale_max = 3.0
+alpha_curve = SubResource("CurveTexture_yqid1")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3si4x"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_njobo")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+proximity_fade_enabled = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_0i88t"]
+material = SubResource("StandardMaterial3D_3si4x")
+size = Vector2(2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mevue"]
+resource_local_to_scene = true
+transparency = 4
+albedo_texture = ExtResource("5_tf4rf")
+
+[sub_resource type="Animation" id="Animation_hxuax"]
+resource_name = "Break"
+length = 1.7
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model/Cylinder:surface_material_override/0:albedo_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GPUParticles3D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SFX:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CollisionShape3D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_tf4rf"]
+resource_name = "Hit"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model/Cylinder:surface_material_override/0:albedo_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Model:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.1, 1.1, 1.1), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_njobo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model/Cylinder:surface_material_override/0:albedo_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GPUParticles3D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Model:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SFX:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CollisionShape3D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tf4rf"]
+_data = {
+&"Break": SubResource("Animation_hxuax"),
+&"Hit": SubResource("Animation_tf4rf"),
+&"RESET": SubResource("Animation_njobo")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_njobo"]
+animation = &"Break"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mevue"]
+animation = &"Hit"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tf4rf"]
+animation = &"RESET"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mevue"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dod7f"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f2fb1"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ckb4l"]
+states/Break/node = SubResource("AnimationNodeAnimation_njobo")
+states/Break/position = Vector2(591, -21)
+states/End/position = Vector2(591, 100)
+states/Hit/node = SubResource("AnimationNodeAnimation_mevue")
+states/Hit/position = Vector2(408, -21)
+states/RESET/node = SubResource("AnimationNodeAnimation_tf4rf")
+states/RESET/position = Vector2(408, 100)
+transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_mevue"), "Break", "End", SubResource("AnimationNodeStateMachineTransition_dod7f"), "Hit", "RESET", SubResource("AnimationNodeStateMachineTransition_f2fb1")]
+graph_offset = Vector2(63, -74)
+
+[node name="Pot" type="StaticBody3D" unique_id=401120346]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_hxuax")
+health = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1922257529]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47166687, 0)
+shape = SubResource("BoxShape3D_njobo")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=698825060]
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ckb4l")
+draw_pass_1 = SubResource("QuadMesh_0i88t")
+
+[node name="SFX" type="AudioStreamPlayer3D" parent="." unique_id=598036845]
+stream = ExtResource("3_tf4rf")
+volume_db = -20.0
+bus = &"Effects"
+attenuation_filter_db = 0.0
+
+[node name="Model" parent="." unique_id=1024040895 instance=ExtResource("1_062ex")]
+
+[node name="Cylinder" parent="Model" index="0" unique_id=319633425]
+surface_material_override/0 = SubResource("StandardMaterial3D_mevue")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1987426549]
+libraries/ = SubResource("AnimationLibrary_tf4rf")
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1894793555]
+callback_mode_discrete = 0
+tree_root = SubResource("AnimationNodeStateMachine_ckb4l")
+anim_player = NodePath("../AnimationPlayer")
+
+[editable path="Model"]

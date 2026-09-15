@@ -8,11 +8,15 @@
 [ext_resource type="PackedScene" uid="uid://bma8n8jgnmlxy" path="res://Prefabs/UI/Transition.tscn" id="2_vyypg"]
 [ext_resource type="PackedScene" uid="uid://ca5oc5e5r64xd" path="res://Prefabs/UI/PauseMenu.tscn" id="3_u0ar8"]
 [ext_resource type="Texture2D" uid="uid://b1uvlqg3y3an" path="res://Textures/Objects/crate2_diffuse.png" id="4_24vic"]
-[ext_resource type="PackedScene" uid="uid://qrgv0a0xfcqk" path="res://Prefabs/UI/DialogBox.tscn" id="5_qsdc8"]
 [ext_resource type="PackedScene" uid="uid://cl6fqp07wrl63" path="res://Prefabs/Objects/StreetLamp.tscn" id="5_yn0hv"]
 [ext_resource type="PackedScene" uid="uid://djsyociolp2ff" path="res://Prefabs/Objects/Coin.tscn" id="7_y6s0p"]
-[ext_resource type="Script" uid="uid://c1cscsrs4kunt" path="res://Levels/DebugDialogArea3D.gd" id="12_7ihrt"]
+[ext_resource type="Script" uid="uid://c1cscsrs4kunt" path="res://Scripts/TalkArea3D.gd" id="12_7ihrt"]
+[ext_resource type="PackedScene" uid="uid://j6smwguj05oy" path="res://Prefabs/Objects/Pot.tscn" id="12_md4p3"]
 [ext_resource type="PackedScene" uid="uid://bctw4ncnb0jnj" path="res://Prefabs/Objects/Quill.tscn" id="13_orfgt"]
+[ext_resource type="Script" uid="uid://252lvpiwrndi" path="res://Scripts/UI/DialogLine.gd" id="13_uf54x"]
+[ext_resource type="PackedScene" uid="uid://4m0ktma35c5f" path="res://Prefabs/Objects/Mushroom.tscn" id="14_2w3hq"]
+[ext_resource type="PackedScene" uid="uid://w32s8ki5jeva" path="res://Prefabs/Objects/Target.tscn" id="15_lvvj2"]
+[ext_resource type="PackedScene" uid="uid://bne4c1qv8vjby" path="res://Prefabs/Objects/PotDispenser.tscn" id="17_jel4d"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_y6s0p"]
 panorama = ExtResource("2_v1anj")
@@ -62,6 +66,11 @@ size = Vector3(2, 2, 2)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2w3hq"]
 points = PackedVector3Array(1, 1, 1, 1, 1, -1, -1, 1, 1, 1, -1, 1, 1, -1, -1, -1, 1, -1, -1, -1, 1, -1, -1, -1)
 
+[sub_resource type="Resource" id="Resource_sce2d"]
+script = ExtResource("13_uf54x")
+line = "..."
+metadata/_custom_type_script = "uid://252lvpiwrndi"
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_0i88t"]
 size = Vector3(5, 5, 5)
 
@@ -74,6 +83,18 @@ albedo_color = Color(0, 1, 0.8509804, 0.13725491)
 material = SubResource("StandardMaterial3D_3si4x")
 size = Vector3(5, 5, 5)
 
+[sub_resource type="Resource" id="Resource_jel4d"]
+script = ExtResource("13_uf54x")
+character = 1
+line = "Olá Puff, serei sua guia nesta jornada épica! UwU"
+talk_time = 3.0
+metadata/_custom_type_script = "uid://252lvpiwrndi"
+
+[sub_resource type="Resource" id="Resource_uf54x"]
+script = ExtResource("13_uf54x")
+line = "..."
+metadata/_custom_type_script = "uid://252lvpiwrndi"
+
 [node name="Playground1" type="Node3D" unique_id=182431723]
 
 [node name="Transition" parent="." unique_id=1497081250 instance=ExtResource("2_vyypg")]
@@ -83,9 +104,6 @@ size = Vector3(5, 5, 5)
 [node name="HUD" parent="." unique_id=1923480852 instance=ExtResource("2_1vrnl")]
 
 [node name="TitleCard" parent="." unique_id=1861283345 instance=ExtResource("2_aege4")]
-
-[node name="DialogBox" parent="." unique_id=912566157 instance=ExtResource("5_qsdc8")]
-autoplay = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1476707213]
 environment = SubResource("Environment_yn0hv")
@@ -134,6 +152,7 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 5, 0
 
 [node name="Coin" parent="Coins" unique_id=1715068151 instance=ExtResource("7_y6s0p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 3)
+blow_up_on_start = true
 
 [node name="Coin2" parent="Coins" unique_id=567342200 instance=ExtResource("7_y6s0p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 4)
@@ -151,6 +170,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 7)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1, 6)
 collision_mask = 2
 script = ExtResource("12_7ihrt")
+lines = Array[ExtResource("13_uf54x")]([SubResource("Resource_sce2d")])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TalkArea" unique_id=1059916833]
 shape = SubResource("BoxShape3D_0i88t")
@@ -158,5 +178,40 @@ shape = SubResource("BoxShape3D_0i88t")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="TalkArea" unique_id=334129432]
 mesh = SubResource("BoxMesh_ckb4l")
 
+[node name="TalkArea2" type="Area3D" parent="." unique_id=553441731]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1, 16)
+collision_mask = 2
+script = ExtResource("12_7ihrt")
+stop_and_wait = true
+lines = Array[ExtResource("13_uf54x")]([SubResource("Resource_jel4d"), SubResource("Resource_uf54x")])
+skippable = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TalkArea2" unique_id=1155963045]
+shape = SubResource("BoxShape3D_0i88t")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TalkArea2" unique_id=1835831342]
+mesh = SubResource("BoxMesh_ckb4l")
+
 [node name="Quill" parent="." unique_id=818133055 instance=ExtResource("13_orfgt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7685143, 10)
+
+[node name="Mushroom" parent="." unique_id=720379116 instance=ExtResource("14_2w3hq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -6)
+
+[node name="Target" parent="." unique_id=1948419756 instance=ExtResource("15_lvvj2")]
+transform = Transform3D(2.9802322e-08, 0, -1, 0, 1, 0, 1, 0, 2.9802322e-08, 11, 0, -3)
+
+[node name="Target2" parent="." unique_id=757287572 instance=ExtResource("15_lvvj2")]
+transform = Transform3D(2.9802322e-08, 0, -1, 0, 1, 0, 1, 0, 2.9802322e-08, 13, 0, 1)
+
+[node name="Pot" parent="." unique_id=401120346 instance=ExtResource("12_md4p3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 11)
+
+[node name="Pot2" parent="." unique_id=1029738297 instance=ExtResource("12_md4p3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 11)
+
+[node name="Pot3" parent="." unique_id=1348197648 instance=ExtResource("12_md4p3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 7)
+
+[node name="PotDispenser" parent="." unique_id=1173759652 instance=ExtResource("17_jel4d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 14)

@@ -5,6 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://cck21f46wp4lg" path="res://Prefabs/Objects/LittleYellowFlare.tscn" id="2_ny7q1"]
 [ext_resource type="Texture2D" uid="uid://bfijn08jwx41i" path="res://Textures/UI/round-star.png" id="3_mhthk"]
 [ext_resource type="AudioStream" uid="uid://ep0u5s8lankd" path="res://Sounds/Objects/Coin/Pickup1.wav" id="3_w44bc"]
+[ext_resource type="AudioStream" uid="uid://bbpamn57bptbr" path="res://Sounds/Objects/Coin/BlowUp.wav" id="6_rvobb"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_sdgg0"]
+bounce = 0.5
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0i88t"]
 size = Vector3(0.5, 0.5, 0.5)
@@ -233,10 +237,20 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_3si4x")
 size = Vector2(0.1, 0.1)
 
-[node name="Coin" type="Node3D" unique_id=1715068151]
+[node name="Coin" type="RigidBody3D" unique_id=1400896108]
+collision_layer = 0
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_sdgg0")
+gravity_scale = 4.0
+lock_rotation = true
+contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("1_sdgg0")
 
-[node name="Area3D" type="Area3D" parent="." unique_id=854140410]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1299325314]
+shape = SubResource("BoxShape3D_0i88t")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1858643909]
 collision_layer = 4
 collision_mask = 2
 
@@ -269,6 +283,12 @@ draw_pass_1 = SubResource("QuadMesh_ckb4l")
 
 [node name="SFX" type="AudioStreamPlayer3D" parent="." unique_id=831019023]
 stream = ExtResource("3_w44bc")
+volume_db = -20.0
+bus = &"Effects"
+attenuation_filter_db = 0.0
+
+[node name="BlowUpSFX" type="AudioStreamPlayer3D" parent="." unique_id=1363197527]
+stream = ExtResource("6_rvobb")
 volume_db = -20.0
 bus = &"Effects"
 attenuation_filter_db = 0.0

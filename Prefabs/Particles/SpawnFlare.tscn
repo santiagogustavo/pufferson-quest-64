@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://b8xaajmdexwb2"]
+
+[ext_resource type="Texture2D" uid="uid://c6ig7xioixma2" path="res://Textures/Particles/nova.png" id="1_n244r"]
+
+[sub_resource type="Curve" id="Curve_w65ld"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_etsbr"]
+curve = SubResource("Curve_w65ld")
+
+[sub_resource type="Curve" id="Curve_lpp3l"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1e-05, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.5), 0.0, 0.0, 0, 0]
+point_count = 3
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_3w5fx"]
+curve = SubResource("Curve_lpp3l")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0i88t"]
+angle_min = -179.99998
+angle_max = 180.00002
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_3w5fx")
+alpha_curve = SubResource("CurveTexture_etsbr")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3si4x"]
+transparency = 4
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 1, 0.4627451)
+albedo_texture = ExtResource("1_n244r")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+proximity_fade_enabled = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_ckb4l"]
+material = SubResource("StandardMaterial3D_3si4x")
+size = Vector2(10, 10)
+
+[node name="SpawnFlare" type="GPUParticles3D" unique_id=1614789406]
+cast_shadow = 0
+emitting = false
+amount = 1
+lifetime = 0.2
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_0i88t")
+draw_pass_1 = SubResource("QuadMesh_ckb4l")

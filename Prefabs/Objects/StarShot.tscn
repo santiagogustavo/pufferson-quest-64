@@ -1,0 +1,140 @@
+[gd_scene format=3 uid="uid://dihvrf6umfaed"]
+
+[ext_resource type="Texture2D" uid="uid://bfijn08jwx41i" path="res://Textures/UI/round-star.png" id="1_jo37o"]
+[ext_resource type="Script" uid="uid://btnxlbhak104" path="res://Scripts/Objects/StarShot.gd" id="1_rtteo"]
+[ext_resource type="Shader" uid="uid://dfp64qj12vy1p" path="res://addons/gputrail/shaders/trail.gdshader" id="2_hkwmn"]
+[ext_resource type="Shader" uid="uid://1cpiujcq4qbx" path="res://addons/gputrail/shaders/trail_draw_pass.gdshader" id="3_rtteo"]
+[ext_resource type="Texture2D" uid="uid://crk6pkb7e5rwc" path="res://addons/gputrail/defaults/texture.tres" id="4_phuk4"]
+[ext_resource type="Script" uid="uid://d5uy3jx36tvx" path="res://addons/gputrail/GPUTrail3D.gd" id="5_pshr6"]
+[ext_resource type="AudioStream" uid="uid://r7xop0s2rauv" path="res://Sounds/Objects/Wand/StarShotHit.wav" id="7_phuk4"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_0i88t"]
+radius = 0.15
+
+[sub_resource type="QuadMesh" id="QuadMesh_0i88t"]
+size = Vector2(0.25, 0.25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ckb4l"]
+transparency = 4
+shading_mode = 0
+albedo_color = Color(1, 0.9843137, 0, 1)
+albedo_texture = ExtResource("1_jo37o")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ro1tu"]
+shader = ExtResource("2_hkwmn")
+
+[sub_resource type="Gradient" id="Gradient_i6fwn"]
+colors = PackedColorArray(1, 0.9843137, 0, 1, 0.5833335, 0, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ckb4l"]
+gradient = SubResource("Gradient_i6fwn")
+
+[sub_resource type="Curve" id="Curve_3si4x"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_0i88t"]
+curve = SubResource("Curve_3si4x")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w3avt"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("3_rtteo")
+shader_parameter/tex = ExtResource("4_phuk4")
+shader_parameter/mask_strength = 1.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/color_ramp = SubResource("GradientTexture1D_ckb4l")
+shader_parameter/curve = SubResource("CurveTexture_0i88t")
+shader_parameter/emmission_transform = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/flags = 44
+
+[sub_resource type="QuadMesh" id="QuadMesh_6y52w"]
+material = SubResource("ShaderMaterial_w3avt")
+
+[sub_resource type="Curve" id="Curve_phuk4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_rtteo"]
+curve = SubResource("Curve_phuk4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sce2d"]
+direction = Vector3(0, 0, 1)
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, -3, 0)
+color = Color(1, 0.8000001, 0, 1)
+alpha_curve = SubResource("CurveTexture_rtteo")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b7y68"]
+transparency = 4
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_jo37o")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_5hcvw"]
+material = SubResource("StandardMaterial3D_b7y68")
+size = Vector2(0.25, 0.25)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_0i88t"]
+random_pitch = 1.2599211
+streams_count = 1
+stream_0/stream = ExtResource("7_phuk4")
+
+[node name="StarShot" type="Node3D" unique_id=740684010]
+script = ExtResource("1_rtteo")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=273951002]
+collision_layer = 8
+collision_mask = 17
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1114866709]
+shape = SubResource("SphereShape3D_0i88t")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1369456157]
+mesh = SubResource("QuadMesh_0i88t")
+surface_material_override/0 = SubResource("StandardMaterial3D_ckb4l")
+
+[node name="GPUTrail3D" type="GPUParticles3D" parent="." unique_id=763255203]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, -0.01294142)
+amount = 50
+lifetime = 50.0
+explosiveness = 1.0
+fixed_fps = 143
+process_material = SubResource("ShaderMaterial_ro1tu")
+draw_pass_1 = SubResource("QuadMesh_6y52w")
+script = ExtResource("5_pshr6")
+length = 50
+length_seconds = 0.34965034965034963
+color_ramp = SubResource("GradientTexture1D_ckb4l")
+curve = SubResource("CurveTexture_0i88t")
+billboard = true
+_defaults_have_been_set = true
+metadata/_custom_type_script = "uid://d5uy3jx36tvx"
+
+[node name="HitParticles" type="GPUParticles3D" parent="." unique_id=610908161]
+emitting = false
+lifetime = 0.25
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_sce2d")
+draw_pass_1 = SubResource("QuadMesh_5hcvw")
+
+[node name="SFX" type="AudioStreamPlayer3D" parent="HitParticles" unique_id=470403071]
+stream = SubResource("AudioStreamRandomizer_0i88t")
+volume_db = -20.0
+bus = &"Effects"
+attenuation_filter_db = 0.0
