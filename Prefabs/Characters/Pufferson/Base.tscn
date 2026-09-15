@@ -2,19 +2,28 @@
 
 [ext_resource type="Script" uid="uid://dusyswueiwckk" path="res://Scripts/PlayerCharacter.gd" id="1_2ngi3"]
 [ext_resource type="PackedScene" uid="uid://df4w52fi2n6wf" path="res://Models/Characters/Pufferson/Pufferson.glb" id="1_v1skk"]
+[ext_resource type="PackedScene" uid="uid://cc4mqvs1bck5r" path="res://Prefabs/Characters/Lumina/Base.tscn" id="2_0oar6"]
 [ext_resource type="Script" uid="uid://qf8d26wy6tp1" path="res://Scripts/CameraPivot.gd" id="2_6htms"]
 [ext_resource type="Texture2D" uid="uid://bfijn08jwx41i" path="res://Textures/UI/round-star.png" id="3_2rwkw"]
 [ext_resource type="AudioStream" uid="uid://csp0ka1x4ir0j" path="res://Sounds/Characters/Pufferson/Dash.wav" id="3_4d4qm"]
 [ext_resource type="Script" uid="uid://dkpg4bjhu166" path="res://Scripts/Characters/GhostTrail.gd" id="3_rk7f6"]
 [ext_resource type="Texture2D" uid="uid://d0pytmvb6mnc" path="res://Textures/Characters/SummoningCircle.png" id="4_j76q7"]
 [ext_resource type="PackedScene" uid="uid://dofvrugre32ha" path="res://Prefabs/Objects/Wand.tscn" id="4_jcju7"]
+[ext_resource type="Texture2D" uid="uid://7e4u2xlpa5qn" path="res://Textures/Flares/Flare1.png" id="5_85c76"]
+[ext_resource type="Material" uid="uid://d3coo2sqywsmr" path="res://Materials/Characters/Pufferson/CapeBase.tres" id="7_66bi0"]
 [ext_resource type="AudioStream" uid="uid://rkli73nlbrds" path="res://Sounds/Characters/Pufferson/Walk.wav" id="7_kbypc"]
 [ext_resource type="Texture2D" uid="uid://qmdblgwkvbap" path="res://Textures/Particles/Dust.png" id="7_ophqd"]
 [ext_resource type="AudioStream" uid="uid://b0rti4fu58ktg" path="res://Sounds/Characters/Pufferson/Land.wav" id="8_hti1q"]
 [ext_resource type="AudioStream" uid="uid://chwhlj3ic5k7c" path="res://Sounds/Characters/Pufferson/Jump.wav" id="8_trwwr"]
+[ext_resource type="Material" uid="uid://5hpwnkxw1m6f" path="res://Materials/Characters/Pufferson/CapeMetallic.tres" id="9_0co6j"]
+[ext_resource type="Material" uid="uid://f4uxfc7p8jp6" path="res://Materials/Characters/Pufferson/CapeGem.tres" id="9_7s2iw"]
 [ext_resource type="AudioStream" uid="uid://dyf1vuoa30jru" path="res://Sounds/Characters/Pufferson/DoubleJump.wav" id="9_el5hk"]
 [ext_resource type="AudioStream" uid="uid://duy8yltgi0j4m" path="res://Sounds/Characters/Pufferson/Fall.wav" id="11_6w1sd"]
 [ext_resource type="AudioStream" uid="uid://cfm58mbf06dap" path="res://Sounds/Characters/Pufferson/Thud.wav" id="12_770sc"]
+[ext_resource type="AudioStream" uid="uid://b681eyb0csa3t" path="res://Sounds/Characters/Pufferson/SummonShort.wav" id="15_c7nlt"]
+[ext_resource type="Script" uid="uid://dk4oaeerwt7lq" path="res://Scripts/EnemyScanner.gd" id="20_7s2iw"]
+[ext_resource type="Script" uid="uid://c30bit8oynmfi" path="res://Scripts/TalkCameraPivot.gd" id="22_78kyn"]
+[ext_resource type="Script" uid="uid://6i2wbg3kt1ku" path="res://Scripts/Characters/ThudArea3D.gd" id="23_p4vkk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0i88t"]
 radius = 0.3178711
@@ -22,13 +31,23 @@ height = 1.4775391
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ckb4l"]
 transparency = 4
-cull_mode = 2
 shading_mode = 0
 albedo_texture = ExtResource("4_j76q7")
 
 [sub_resource type="QuadMesh" id="QuadMesh_0i88t"]
 material = SubResource("StandardMaterial3D_ckb4l")
 size = Vector2(2, 2)
+orientation = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3w5fx"]
+transparency = 4
+shading_mode = 0
+albedo_color = Color(0.9666667, 0, 1, 0.3254902)
+albedo_texture = ExtResource("5_85c76")
+
+[sub_resource type="QuadMesh" id="QuadMesh_3si4x"]
+material = SubResource("StandardMaterial3D_3w5fx")
+size = Vector2(3, 3)
 orientation = 1
 
 [sub_resource type="Curve" id="Curve_2w3hq"]
@@ -175,6 +194,139 @@ random_pitch = 1.2599211
 streams_count = 1
 stream_0/stream = ExtResource("9_el5hk")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_78kyn"]
+transparency = 4
+albedo_color = Color(0, 1, 0.66666675, 0.44313726)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ckb4l"]
+material = SubResource("StandardMaterial3D_78kyn")
+size = Vector3(0.1, 0.1, 100)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_sce2d"]
+height = 1.0
+radius = 12.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5hcvw"]
+transparency = 4
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0.078431375)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_sce2d"]
+material = SubResource("StandardMaterial3D_5hcvw")
+top_radius = 12.5
+bottom_radius = 12.5
+height = 1.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0i88t"]
+radius = 2.0
+
+[sub_resource type="Gradient" id="Gradient_p4vkk"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3si4x"]
+gradient = SubResource("Gradient_p4vkk")
+fill_from = Vector2(0.5, 1)
+fill_to = Vector2(0.5, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6eyx6"]
+transparency = 4
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.57, 1, 0.89966667, 1)
+albedo_texture = SubResource("GradientTexture2D_3si4x")
+texture_repeat = false
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_0i88t"]
+material = SubResource("StandardMaterial3D_6eyx6")
+top_radius = 2.0
+bottom_radius = 2.0
+height = 1.0
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="Animation" id="Animation_p4vkk"]
+resource_name = "Impact"
+length = 0.19999999999999998
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.1, 1, 0.1), Vector3(1, 0.01, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_6eyx6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_riekx"]
+_data = {
+&"Impact": SubResource("Animation_p4vkk"),
+&"RESET": SubResource("Animation_6eyx6")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6eyx6"]
+animation = &"Impact"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_p4vkk"]
+animation = &"RESET"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6eyx6"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_riekx"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ckb4l"]
+states/Impact/node = SubResource("AnimationNodeAnimation_6eyx6")
+states/Impact/position = Vector2(537, -48)
+states/RESET/node = SubResource("AnimationNodeAnimation_p4vkk")
+states/RESET/position = Vector2(537, 100)
+transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_6eyx6"), "Impact", "RESET", SubResource("AnimationNodeStateMachineTransition_riekx")]
+graph_offset = Vector2(70, -95)
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_trwwr"]
 animation = &"Dash"
 
@@ -238,6 +390,19 @@ nodes/Animation/node = SubResource("AnimationNodeAnimation_2rwkw")
 nodes/Animation/position = Vector2(-200, 160)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_jcju7")
 nodes/TimeScale/position = Vector2(60, 140)
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0co6j"]
+animation = &"Launch"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_7s2iw"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_78kyn"]
+graph_offset = Vector2(-148, 11)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_0co6j")
+nodes/Animation/position = Vector2(-180, 140)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_7s2iw")
+nodes/TimeScale/position = Vector2(80, 140)
 node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jcju7"]
@@ -351,6 +516,11 @@ advance_condition = &"is_not_shooting_spell"
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0oar6"]
+xfade_time = 0.1
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_0i88t"]
 states/Dash/node = SubResource("AnimationNodeBlendTree_hti1q")
 states/Dash/position = Vector2(566, -145)
@@ -363,6 +533,8 @@ states/Jump/node = SubResource("AnimationNodeBlendTree_jcju7")
 states/Jump/position = Vector2(855, -145)
 states/Land/node = SubResource("AnimationNodeBlendTree_4d4qm")
 states/Land/position = Vector2(855, 100)
+states/Launch/node = SubResource("AnimationNodeBlendTree_78kyn")
+states/Launch/position = Vector2(1142, 262)
 states/Popup/node = SubResource("AnimationNodeAnimation_jcju7")
 states/Popup/position = Vector2(266, 100)
 states/Spell/node = SubResource("AnimationNodeBlendTree_wm67h")
@@ -372,11 +544,12 @@ states/Thud/node = SubResource("AnimationNodeBlendTree_ophqd")
 states/Thud/position = Vector2(316, -53)
 states/Walk/node = SubResource("AnimationNodeBlendSpace1D_6w1sd")
 states/Walk/position = Vector2(566, 100)
-transitions = ["Land", "Jump", SubResource("AnimationNodeStateMachineTransition_el5hk"), "Start", "Popup", SubResource("AnimationNodeStateMachineTransition_hti1q"), "Fall", "Land", SubResource("AnimationNodeStateMachineTransition_ophqd"), "Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_kbypc"), "DoubleJump", "Fall", SubResource("AnimationNodeStateMachineTransition_j76q7"), "Walk", "Jump", SubResource("AnimationNodeStateMachineTransition_0co6j"), "Land", "Walk", SubResource("AnimationNodeStateMachineTransition_7s2iw"), "Walk", "Dash", SubResource("AnimationNodeStateMachineTransition_78kyn"), "Dash", "Walk", SubResource("AnimationNodeStateMachineTransition_rk7f6"), "Popup", "Walk", SubResource("AnimationNodeStateMachineTransition_2rwkw"), "Dash", "Jump", SubResource("AnimationNodeStateMachineTransition_jcju7"), "Spell", "Walk", SubResource("AnimationNodeStateMachineTransition_66bi0"), "Thud", "Walk", SubResource("AnimationNodeStateMachineTransition_6w1sd")]
-graph_offset = Vector2(-78, -116)
+transitions = ["Land", "Jump", SubResource("AnimationNodeStateMachineTransition_el5hk"), "Start", "Popup", SubResource("AnimationNodeStateMachineTransition_hti1q"), "Fall", "Land", SubResource("AnimationNodeStateMachineTransition_ophqd"), "Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_kbypc"), "DoubleJump", "Fall", SubResource("AnimationNodeStateMachineTransition_j76q7"), "Walk", "Jump", SubResource("AnimationNodeStateMachineTransition_0co6j"), "Land", "Walk", SubResource("AnimationNodeStateMachineTransition_7s2iw"), "Walk", "Dash", SubResource("AnimationNodeStateMachineTransition_78kyn"), "Dash", "Walk", SubResource("AnimationNodeStateMachineTransition_rk7f6"), "Popup", "Walk", SubResource("AnimationNodeStateMachineTransition_2rwkw"), "Dash", "Jump", SubResource("AnimationNodeStateMachineTransition_jcju7"), "Spell", "Walk", SubResource("AnimationNodeStateMachineTransition_66bi0"), "Thud", "Walk", SubResource("AnimationNodeStateMachineTransition_6w1sd"), "Launch", "Fall", SubResource("AnimationNodeStateMachineTransition_0oar6")]
+graph_offset = Vector2(400, 52)
 
 [node name="Pufferson" type="CharacterBody3D" unique_id=1657517756]
 collision_layer = 2
+collision_mask = 17
 platform_floor_layers = 4278190081
 script = ExtResource("1_2ngi3")
 
@@ -405,48 +578,79 @@ transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 visible = false
 mesh = SubResource("QuadMesh_0i88t")
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SummoningCircle" unique_id=769751843]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.011201203, 0)
+mesh = SubResource("QuadMesh_3si4x")
+
 [node name="Model" parent="." unique_id=31041745 instance=ExtResource("1_v1skk")]
 
-[node name="Skeleton3D" parent="Model/Armature" parent_id_path=PackedInt32Array(31041745, 1664205128) index="0" unique_id=189318154]
+[node name="Skeleton3D" parent="Model/Armature" parent_id_path=PackedInt32Array(31041745, 152547847) index="0" unique_id=493207205]
 bones/0/rotation = Quaternion(0.4999999, 0.5000001, 0.50000006, 0.49999997)
 bones/1/position = Vector3(5.4792437e-17, 1.224027, 0.43605322)
 bones/1/rotation = Quaternion(0.7071068, 5.3385087e-08, 5.3385087e-08, 0.7071068)
-bones/2/position = Vector3(0, 0.22210006, -0.026195446)
-bones/2/rotation = Quaternion(0.0035228583, 0, 0, 0.9999938)
+bones/2/position = Vector3(0, 0.22884797, -0.026195446)
+bones/2/rotation = Quaternion(0.0008436837, 0, 0, 0.9999997)
 bones/3/position = Vector3(0, 1.2546803e-08, 4.960017e-10)
 bones/3/rotation = Quaternion(0.13365118, 1.181398e-07, 1.5932464e-08, 0.99102855)
 bones/4/rotation = Quaternion(-0.13365121, -3.5571701e-09, -5.8241397e-08, 0.9910284)
 bones/4/scale = Vector3(1, 1.0000002, 0.99999994)
 bones/5/position = Vector3(0.11657067, -0.050967254, 0.014001631)
-bones/5/rotation = Quaternion(0.6918377, 0.146152, 0.6918381, 0.14615162)
+bones/5/rotation = Quaternion(0.6927283, 0.14187124, 0.69272864, 0.14187083)
 bones/5/scale = Vector3(1, 1.0000002, 1.0000025)
 bones/6/position = Vector3(-0.11657068, -0.050967246, 0.014001571)
-bones/6/rotation = Quaternion(0.69183785, -0.14615189, -0.69183797, 0.14615141)
+bones/6/rotation = Quaternion(0.69272834, -0.14187111, -0.69272846, 0.14187063)
 bones/6/scale = Vector3(1, 1, 1.0000025)
 bones/7/position = Vector3(1.6001195e-08, 0.53165144, 0.063473575)
 bones/7/rotation = Quaternion(-0.7071068, 1.03964105e-07, 1.967038e-08, 0.7071068)
 bones/8/position = Vector3(-8.881784e-15, -2.775125e-09, 1.8285712e-07)
-bones/9/rotation = Quaternion(0.39619803, 0.06010686, 0.9100932, -0.105569154)
+bones/9/rotation = Quaternion(0.38285604, 0.051446028, 0.918422, -0.085297704)
 bones/9/scale = Vector3(1.0000001, 1.0000005, 1.0000004)
 bones/10/position = Vector3(-0.18104897, 0.19279842, 0.16296598)
-bones/10/rotation = Quaternion(-0.39800334, 0.061631877, 0.9088664, 0.108429104)
+bones/10/rotation = Quaternion(-0.3830417, 0.05158679, 0.91831017, 0.08558258)
 bones/10/scale = Vector3(1.0000002, 1.0000008, 1.0000001)
 bones/11/rotation = Quaternion(0.09156183, 8.59209e-15, 2.1830036e-08, 0.9957995)
-bones/12/rotation = Quaternion(0.6833162, -4.5031697e-08, 1.4625634e-07, 0.7301227)
+bones/12/rotation = Quaternion(0.69174963, -4.454536e-08, 1.4767735e-07, 0.7221374)
 bones/12/scale = Vector3(1, 1, 1.0000002)
-bones/13/position = Vector3(0.25729254, 0.66928864, 0.22982758)
-bones/13/rotation = Quaternion(0.6480375, 0.5910353, 0.283631, 0.3876573)
-bones/13/scale = Vector3(1.000001, 1.0000002, 1.0000001)
-bones/14/rotation = Quaternion(-0.4999999, 0.5000001, 0.50000006, -0.49999997)
-bones/15/position = Vector3(-0.25944802, 0.66928864, 0.2298276)
-bones/15/rotation = Quaternion(0.6480375, -0.5910353, -0.283631, 0.3876573)
-bones/15/scale = Vector3(1.000001, 1.0000002, 1.0000001)
+bones/13/rotation = Quaternion(0.9800309, -6.0715015e-09, 2.3188788e-07, -0.19884554)
+bones/13/scale = Vector3(1, 1, 0.99999976)
+bones/14/rotation = Quaternion(0.009185982, -4.4629125e-10, 7.641325e-09, 0.99995786)
+bones/14/scale = Vector3(1, 0.99999994, 0.9999999)
+bones/15/rotation = Quaternion(0.026168829, -2.8454028e-10, 1.0509732e-08, 0.9996576)
+bones/15/scale = Vector3(1, 1.0000001, 1.0000001)
+bones/16/rotation = Quaternion(0.01831206, -1.5359572e-10, 7.2627295e-09, 0.99983233)
+bones/16/scale = Vector3(1, 1.0000004, 1.0000004)
+bones/17/rotation = Quaternion(0.044524863, -5.8716094e-11, 1.21230554e-08, 0.99900836)
+bones/17/scale = Vector3(1, 0.9999997, 0.99999964)
+bones/18/position = Vector3(0.24453996, 0.66928864, 0.2298276)
+bones/18/rotation = Quaternion(0.6480375, 0.5910353, 0.283631, 0.3876573)
+bones/18/scale = Vector3(1.000001, 1.0000002, 1.0000001)
+bones/19/rotation = Quaternion(-0.4999999, 0.5000001, 0.50000006, -0.49999997)
+bones/20/position = Vector3(-0.24475238, 0.6692887, 0.2298276)
+bones/20/rotation = Quaternion(0.6480375, -0.5910353, -0.283631, 0.3876573)
+bones/20/scale = Vector3(1.000001, 1.0000002, 1.0000001)
+bones/21/position = Vector3(1.7033643e-16, 0.5769555, -0.35382944)
+bones/21/rotation = Quaternion(-0.79268974, 7.2673004e-08, -9.4495974e-08, 0.6096253)
 
-[node name="Cylinder_001" parent="Model/Armature/Skeleton3D" index="0" unique_id=1522688747]
+[node name="BézierCurve" parent="Model/Armature/Skeleton3D" index="0" unique_id=2119332192]
+surface_material_override/0 = ExtResource("7_66bi0")
+
+[node name="BézierCurve_001" parent="Model/Armature/Skeleton3D" index="1" unique_id=1611734381]
+surface_material_override/0 = ExtResource("7_66bi0")
+
+[node name="BézierCurve_003" parent="Model/Armature/Skeleton3D" index="2" unique_id=60392569]
+surface_material_override/0 = ExtResource("7_66bi0")
+
+[node name="Cylinder_001" parent="Model/Armature/Skeleton3D" index="3" unique_id=952606281]
 layers = 2
 
-[node name="RightHand" type="BoneAttachment3D" parent="Model/Armature/Skeleton3D" index="1" unique_id=249662743]
-transform = Transform3D(-0.65967345, -0.2461547, -0.71009815, 0.016484007, -0.949354, 0.3137785, -0.75137204, 0.19528615, 0.6303205, -0.18104891, 0.9716879, 0.16764022)
+[node name="Gem" parent="Model/Armature/Skeleton3D" index="4" unique_id=983712501]
+surface_material_override/0 = ExtResource("9_7s2iw")
+
+[node name="Plane" parent="Model/Armature/Skeleton3D" index="5" unique_id=2023957710]
+surface_material_override/0 = ExtResource("9_0co6j")
+
+[node name="RightHand" type="BoneAttachment3D" parent="Model/Armature/Skeleton3D" index="6" unique_id=249662743]
+transform = Transform3D(-0.6919098, -0.19670264, -0.6946722, -0.012988731, -0.9586246, 0.28437975, -0.7218675, 0.20578814, 0.66072595, -0.18104891, 0.97946364, 0.16362089)
 bone_name = "Arm.R"
 bone_idx = 10
 
@@ -454,6 +658,8 @@ bone_idx = 10
 transform = Transform3D(-4.371139e-08, -0.9936146, -0.112827465, 1, -4.3432273e-08, -4.931845e-09, 0, -0.112827465, 0.9936146, -0.00053886586, 0.069615476, -0.011237527)
 
 [node name="Wand" parent="Model/Armature/Skeleton3D/RightHand/Offset" unique_id=894519083 instance=ExtResource("4_jcju7")]
+
+[node name="Lumina" parent="Model" unique_id=1172230706 instance=ExtResource("2_0oar6")]
 
 [node name="Stars" type="GPUParticles3D" parent="Model" unique_id=947312663]
 cast_shadow = 0
@@ -472,7 +678,6 @@ emitting = false
 amount = 1
 lifetime = 0.3
 one_shot = true
-local_coords = true
 process_material = SubResource("ParticleProcessMaterial_ckb4l")
 draw_pass_1 = SubResource("QuadMesh_85c76")
 
@@ -482,7 +687,6 @@ emitting = false
 lifetime = 0.3
 one_shot = true
 explosiveness = 1.0
-local_coords = true
 process_material = SubResource("ParticleProcessMaterial_3si4x")
 draw_pass_1 = SubResource("QuadMesh_3w5fx")
 
@@ -525,6 +729,14 @@ bus = &"Effects"
 playback_type = 1
 attenuation_filter_db = 0.0
 
+[node name="Summon" type="AudioStreamPlayer3D" parent="Model" unique_id=128652549]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0033937097, 0)
+stream = ExtResource("15_c7nlt")
+volume_db = -20.0
+bus = &"Effects"
+playback_type = 1
+attenuation_filter_db = 0.0
+
 [node name="Thud" type="AudioStreamPlayer3D" parent="Model" unique_id=1793807223]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0033937097, 0)
 stream = ExtResource("12_770sc")
@@ -533,12 +745,66 @@ bus = &"Effects"
 playback_type = 1
 attenuation_filter_db = 0.0
 
+[node name="TargetRaycast" type="RayCast3D" parent="Model" unique_id=909912646]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+target_position = Vector3(0, 0, 100)
+collision_mask = 16
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Model/TargetRaycast" unique_id=231844913]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
+visible = false
+mesh = SubResource("BoxMesh_ckb4l")
+
+[node name="TalkCameraPivot" type="Marker3D" parent="Model" unique_id=91849762]
+script = ExtResource("22_78kyn")
+
+[node name="Camera3D" type="Camera3D" parent="Model/TalkCameraPivot" unique_id=1577041476]
+transform = Transform3D(-0.767756, 0, -0.6407424, 0, 1, 0, 0.6407424, 0, -0.767756, -1.2879366, 1.3738015, -0.7981672)
+fov = 85.0
+
+[node name="EnemyScanner" type="Area3D" parent="Model" unique_id=1632446811]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("20_7s2iw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Model/EnemyScanner" unique_id=489922205]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_sce2d")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Model/EnemyScanner" unique_id=1096016120]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
+mesh = SubResource("CylinderMesh_sce2d")
+
+[node name="ThudArea3D" type="Area3D" parent="Model" unique_id=345443838]
+collision_layer = 8
+collision_mask = 16
+script = ExtResource("23_p4vkk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Model/ThudArea3D" unique_id=1973055834]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CylinderShape3D_0i88t")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Model/ThudArea3D" unique_id=399251169]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+visible = false
+mesh = SubResource("CylinderMesh_0i88t")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Model/ThudArea3D" unique_id=544096500]
+libraries/ = SubResource("AnimationLibrary_riekx")
+
+[node name="AnimationTree" type="AnimationTree" parent="Model/ThudArea3D" unique_id=26192856]
+callback_mode_discrete = 0
+tree_root = SubResource("AnimationNodeStateMachine_ckb4l")
+anim_player = NodePath("../AnimationPlayer")
+
 [node name="CameraPivot" type="Marker3D" parent="." unique_id=2054639257]
 transform = Transform3D(1, 0, 0, 0, 0.9396926, -0.34202012, 0, 0.34202012, 0.9396926, 0, 1.2429357, 0)
 script = ExtResource("2_6htms")
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot" unique_id=1598360297]
 transform = Transform3D(-1, 0, -8.7422784e-08, -1.7763568e-15, 1.0000001, 0, 8.7422784e-08, 0, -1.0000001, 0, 0.19170046, -2.0880976)
+current = true
 fov = 85.0
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot" unique_id=1853585796]
@@ -562,6 +828,7 @@ parameters/DoubleJump/TimeScale/scale = 2.0
 parameters/Fall/TimeScale/scale = 1.5
 parameters/Jump/TimeScale/scale = 1.5
 parameters/Land/TimeScale/scale = 2.0
+parameters/Launch/TimeScale/scale = 1.5
 parameters/Spell/TimeSeek/seek_request = -1.0
 parameters/Spell/BlendSpace1D/blend_position = 0.0
 parameters/Thud/TimeScale/scale = 1.5

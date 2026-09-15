@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dybyv2q4hx2be"]
+
+[ext_resource type="Texture2D" uid="uid://de2cip0g1250p" path="res://Textures/Characters/Lumina/HairAlbedo.png" id="1_rvbfq"]
+
+[resource]
+transparency = 4
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_rvbfq")

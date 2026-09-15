@@ -1,0 +1,467 @@
+[gd_scene format=3 uid="uid://cc4mqvs1bck5r"]
+
+[ext_resource type="PackedScene" uid="uid://c5k8qom3u7ygk" path="res://Models/Characters/Lumina/Lumina.glb" id="1_iajoh"]
+[ext_resource type="Script" uid="uid://cf04exqpucfp7" path="res://Scripts/Characters/Lumina/Lumina.gd" id="1_jrh47"]
+[ext_resource type="Texture2D" uid="uid://7e4u2xlpa5qn" path="res://Textures/Flares/Flare1.png" id="2_hwf81"]
+[ext_resource type="Animation" uid="uid://cfkdpxsd6rb7r" path="res://Animations/Characters/Lumina/WingsFlap.anim" id="3_jrh47"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ckb4l"]
+transparency = 4
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0.49411765)
+albedo_texture = ExtResource("2_hwf81")
+disable_receive_shadows = true
+billboard_mode = 1
+billboard_keep_scale = true
+proximity_fade_enabled = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_0i88t"]
+material = SubResource("StandardMaterial3D_ckb4l")
+size = Vector2(0.75, 0.75)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n6seo"]
+_data = {
+&"WingsFlap": ExtResource("3_jrh47")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_iajoh"]
+animation = &"Lumina/WingsFlap"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ffs43"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_0i88t"]
+states/WingsFlap/node = SubResource("AnimationNodeAnimation_iajoh")
+states/WingsFlap/position = Vector2(488, 100)
+transitions = ["Start", "WingsFlap", SubResource("AnimationNodeStateMachineTransition_ffs43")]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ffs43"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hwf81"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ckb4l"]
+states/Idle/node = SubResource("AnimationNodeAnimation_ffs43")
+states/Idle/position = Vector2(502, 100)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_hwf81")]
+
+[sub_resource type="Animation" id="Animation_jrh47"]
+resource_name = "DialogPopIn"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.717, 1.484), Vector3(0, 1.022, 2.115)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Model:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Model:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 3.1415927, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Model:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.01, 0.01, 0.01), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hnh7l"]
+resource_name = "DialogPopOut"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.022, 2.115)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Model:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Model:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 3.1415927, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Model:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(0.01, 0.01, 0.01)]
+}
+
+[sub_resource type="Animation" id="Animation_errhn"]
+resource_name = "InteractPopIn"
+length = 0.19999999999999998
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.637, 0.85, 0.24)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Model:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Model:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Model:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.01, 0.01, 0.01), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_l22yw"]
+resource_name = "InteractPopOut"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.637, 0.85, 0.24)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Model:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Model:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Model:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(0.01, 0.01, 0.01)]
+}
+
+[sub_resource type="Animation" id="Animation_n6seo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Model:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 3.1415927, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Model:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Model:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_errhn"]
+_data = {
+&"DialogPopIn": SubResource("Animation_jrh47"),
+&"DialogPopOut": SubResource("Animation_hnh7l"),
+&"InteractPopIn": SubResource("Animation_errhn"),
+&"InteractPopOut": SubResource("Animation_l22yw"),
+&"RESET": SubResource("Animation_n6seo")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jrh47"]
+animation = &"DialogPopIn"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n6seo"]
+animation = &"DialogPopOut"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_errhn"]
+animation = &"InteractPopIn"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l22yw"]
+animation = &"InteractPopOut"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hnh7l"]
+animation = &"RESET"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lgrg4"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h3t2b"]
+advance_mode = 2
+advance_condition = &"finished_dialog"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vpwls"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_52lpw"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6xfny"]
+advance_mode = 2
+advance_condition = &"finished_interact"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_jrh47"]
+states/DialogPopIn/node = SubResource("AnimationNodeAnimation_jrh47")
+states/DialogPopIn/position = Vector2(296, -86)
+states/DialogPopOut/node = SubResource("AnimationNodeAnimation_n6seo")
+states/DialogPopOut/position = Vector2(296, 1)
+states/InteractPopIn/node = SubResource("AnimationNodeAnimation_errhn")
+states/InteractPopIn/position = Vector2(532, -86)
+states/InteractPopOut/node = SubResource("AnimationNodeAnimation_l22yw")
+states/InteractPopOut/position = Vector2(532, 1)
+states/RESET/node = SubResource("AnimationNodeAnimation_hnh7l")
+states/RESET/position = Vector2(507, 100)
+transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_lgrg4"), "DialogPopIn", "DialogPopOut", SubResource("AnimationNodeStateMachineTransition_h3t2b"), "DialogPopOut", "RESET", SubResource("AnimationNodeStateMachineTransition_vpwls"), "InteractPopOut", "RESET", SubResource("AnimationNodeStateMachineTransition_52lpw"), "InteractPopIn", "InteractPopOut", SubResource("AnimationNodeStateMachineTransition_6xfny")]
+graph_offset = Vector2(24, -104)
+
+[node name="Lumina" type="Node3D" unique_id=1172230706]
+script = ExtResource("1_jrh47")
+
+[node name="Model" parent="." unique_id=1136096888 instance=ExtResource("1_iajoh")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+visible = false
+
+[node name="Skeleton3D" parent="Model/ArmatureWings" parent_id_path=PackedInt32Array(1136096888, 2012534136) index="0" unique_id=1903965487]
+bones/1/rotation = Quaternion(-0.10813819, 0.27696142, -0.64156187, 0.7071047)
+bones/2/rotation = Quaternion(-0.10813822, -0.27696142, 0.6415618, 0.7071046)
+
+[node name="CopyTransformModifier3D" type="CopyTransformModifier3D" parent="Model/ArmatureWings/Skeleton3D" index="1" unique_id=641397165]
+setting_count = 1
+settings/0/amount = 1.0
+settings/0/apply_bone_name = "Root"
+settings/0/apply_bone = 0
+settings/0/reference_type = 1
+settings/0/reference_node = NodePath("../../../Armature/Skeleton3D/WingAttachment/WingOffset")
+settings/0/copy = 7
+settings/0/axes = 7
+settings/0/invert = 0
+settings/0/additive = false
+
+[node name="Skeleton3D" parent="Model/Armature" parent_id_path=PackedInt32Array(1136096888, 520076164) index="0" unique_id=409573392]
+bones/0/position = Vector3(-5.711384e-18, 0.18024956, 0.045058947)
+bones/0/rotation = Quaternion(0.19589068, -2.852255e-26, -4.1462617e-17, 0.98062575)
+bones/1/position = Vector3(3.7403013e-17, 0.13231096, 0.03931039)
+bones/1/rotation = Quaternion(-0.78871644, -1.848008e-17, 1.8480083e-17, 0.6147572)
+bones/2/position = Vector3(-4.432615e-19, 0.000514404, -0.0013212775)
+bones/4/rotation = Quaternion(3.552714e-15, 0.7505552, 0.6608077, 3.1086249e-15)
+bones/6/rotation = Quaternion(-0.28653982, 0.3633251, -0.46598697, 0.7541526)
+bones/7/rotation = Quaternion(-0.14532582, 0.0070047304, 0.47769573, 0.8663938)
+bones/8/rotation = Quaternion(-0.31875885, 0.660549, 0.52918154, 0.42665553)
+bones/10/rotation = Quaternion(-0.3942265, -0.33305493, 0.4343932, 0.73821574)
+bones/11/rotation = Quaternion(-0.18364984, -0.006272018, -0.6036692, 0.7757686)
+bones/12/rotation = Quaternion(0.6105157, 0.4730619, 0.03735136, 0.634104)
+bones/14/rotation = Quaternion(-0.15746552, 2.4802352e-17, 6.9410505e-17, 0.9875245)
+bones/15/rotation = Quaternion(0.9703298, -0.0729661, -0.109026894, 0.20309925)
+bones/16/rotation = Quaternion(0.37571687, 3.8331276e-09, -2.0432647e-09, 0.9267345)
+bones/17/rotation = Quaternion(-0.06481475, 0.18742439, -0.25839594, 0.9454643)
+bones/18/rotation = Quaternion(0.7906766, 0.04075915, 0.39100704, 0.46934313)
+bones/19/rotation = Quaternion(0.79834163, -8.7196e-09, 1.506918e-08, 0.602205)
+bones/20/rotation = Quaternion(-0.21860783, -0.20985706, 0.6776054, 0.6700908)
+bones/21/position = Vector3(-0.06066627, 0.38186482, 0.123916805)
+bones/22/position = Vector3(-0.13165334, -0.10179408, -0.04421976)
+bones/22/rotation = Quaternion(0.25022578, -0.6290624, 0.13368511, 0.7237375)
+bones/23/position = Vector3(0.06066627, 0.38186482, 0.123916805)
+bones/24/position = Vector3(0.11261554, -0.105777696, -0.00059848675)
+bones/24/rotation = Quaternion(0.35102275, 0.5965951, 0.17998162, -0.698902)
+bones/25/position = Vector3(0.011173524, 0.031140197, -0.110299304)
+bones/25/rotation = Quaternion(0.84862876, 0.048519254, 0.18800627, -0.49206567)
+bones/26/position = Vector3(-0.002289012, 0.06885924, -0.024898777)
+bones/26/rotation = Quaternion(0.7901916, -0.210197, -0.31889027, -0.4792948)
+bones/27/position = Vector3(5.104801e-17, 0.51639646, 0.43223315)
+bones/28/position = Vector3(0.0633014, 0.11045481, 0.08706279)
+bones/29/position = Vector3(-0.10007516, 0.14354393, 0.08585749)
+bones/30/position = Vector3(-0.090893075, 0.2653987, -0.0136662945)
+bones/31/position = Vector3(0.034344375, 0.27863175, 0.024665147)
+
+[node name="WingAttachment" type="BoneAttachment3D" parent="Model/Armature/Skeleton3D" index="1" unique_id=1392084793]
+transform = Transform3D(1, 3.0669862e-17, 4.7702476e-18, -3.0956854e-17, 0.99666446, 0.08160849, -2.2514173e-18, -0.08160849, 0.99666446, 4.1329444e-17, 0.28607225, 0.13148184)
+bone_name = "Root.003"
+bone_idx = 2
+
+[node name="WingOffset" type="Node3D" parent="Model/Armature/Skeleton3D/WingAttachment" unique_id=1922678542]
+transform = Transform3D(1, 3.670614e-24, 2.0679515e-25, 4.652891e-25, 0.9553915, -0.2953422, -2.0679515e-25, 0.2953422, 0.9553915, 0, 0.05849558, -0.0032043606)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Model/Armature/Skeleton3D/WingAttachment" unique_id=1161756176]
+transform = Transform3D(1, -3.104796e-17, -2.4694768e-18, 3.0839788e-17, 0.9981417, -0.06093446, 4.35678e-18, 0.06093446, 0.9981417, -5.015241e-17, 0.2694261, -0.020790158)
+cast_shadow = 0
+mesh = SubResource("QuadMesh_0i88t")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Model/Armature/Skeleton3D/WingAttachment" unique_id=1850006655]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6975782e-24, 0.21374872, 0.089360274)
+light_energy = 0.05
+light_size = 1.0
+
+[node name="WingsAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1841732049]
+root_node = NodePath("../Model")
+libraries/Lumina = SubResource("AnimationLibrary_n6seo")
+
+[node name="WingsAnimationTree" type="AnimationTree" parent="." unique_id=1189936980]
+root_node = NodePath("../Model")
+callback_mode_discrete = 0
+tree_root = SubResource("AnimationNodeStateMachine_0i88t")
+anim_player = NodePath("../WingsAnimationPlayer")
+
+[node name="ModelAnimationTree" type="AnimationTree" parent="." unique_id=799370172]
+root_node = NodePath("../Model")
+callback_mode_discrete = 0
+tree_root = SubResource("AnimationNodeStateMachine_ckb4l")
+anim_player = NodePath("../Model/AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=732276136]
+libraries/ = SubResource("AnimationLibrary_errhn")
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1882919394]
+callback_mode_discrete = 0
+tree_root = SubResource("AnimationNodeStateMachine_jrh47")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/finished_dialog = false
+parameters/conditions/finished_interact = false
+
+[editable path="Model"]

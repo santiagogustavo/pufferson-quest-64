@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://d3coo2sqywsmr"]
+
+[ext_resource type="Texture2D" uid="uid://dqh30qb15gnfc" path="res://Textures/Characters/Pufferson/CapeAlbedo.png" id="1_tquf7"]
+[ext_resource type="Texture2D" uid="uid://d0e3y6yl06rmp" path="res://Textures/Characters/Pufferson/CapeAlbedoAO.png" id="2_mrbaa"]
+
+[resource]
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("1_tquf7")
+ao_enabled = true
+ao_light_affect = 0.25
+ao_texture = ExtResource("2_mrbaa")
