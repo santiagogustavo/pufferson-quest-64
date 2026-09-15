@@ -2,6 +2,10 @@
 
 [ext_resource type="FontFile" uid="uid://bkgbv3p70i2r3" path="res://Fonts/MagicRomance.ttf" id="1_7y3gh"]
 [ext_resource type="Script" uid="uid://7xusacc0aqp1" path="res://Scripts/UI/PauseMenu.gd" id="1_uijsi"]
+[ext_resource type="Texture2D" uid="uid://b31t0d7quku4r" path="res://Textures/UI/ScrollClosed.png" id="2_1n8h6"]
+[ext_resource type="Texture2D" uid="uid://bka3hmqqvhvhp" path="res://Textures/UI/ScrollOpen.png" id="3_edksq"]
+[ext_resource type="Theme" uid="uid://bcxmjriw7rmaf" path="res://UITheme.tres" id="5_hcq3r"]
+[ext_resource type="Script" uid="uid://bxcc237hqok38" path="res://Prefabs/UI/PauseMenuButton.gd" id="6_hcq3r"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0i88t"]
 font = ExtResource("1_7y3gh")
@@ -29,38 +33,88 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MarginContainer/Control/Label:position")
+tracks/0/path = NodePath("MarginContainer/Control/UIContent/Label:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(485.5, 300), Vector2(485.5, 264)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MarginContainer/Control/Label:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.19999999),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("..:visible")
+tracks/2/path = NodePath("MarginContainer/Control/Control:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, true]
+"update": 0,
+"values": [Vector2(0, 20), Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MarginContainer/Control/Control/VBoxContainer/Control:custom_minimum_size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 900)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MarginContainer/Control/UIContent:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(410, 128), Vector2(410, 108)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MarginContainer/Control/UIContent/VBoxContainer/Resume")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"grab_focus"
+}]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MarginContainer/Control/UIContent/VBoxContainer:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_7y3gh"]
@@ -69,38 +123,62 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MarginContainer/Control/Label:position")
+tracks/0/path = NodePath("MarginContainer/Control/UIContent/Label:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(485.5, 264), Vector2(485.5, 300)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MarginContainer/Control/Label:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(-1.4901161e-08, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("..:visible")
+tracks/2/path = NodePath("MarginContainer/Control/UIContent:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
+"update": 0,
+"values": [Vector2(410, 108), Vector2(410, 128)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MarginContainer/Control/Control/VBoxContainer/Control:custom_minimum_size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 900), Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MarginContainer/Control/UIContent/VBoxContainer:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.19999999),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_1n8h6"]
@@ -108,7 +186,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MarginContainer/Control/Label:modulate")
+tracks/0/path = NodePath("MarginContainer/Control/UIContent/Label:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -120,26 +198,62 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MarginContainer/Control/Label:position")
+tracks/1/path = NodePath("..:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(485.5, 264)]
+"update": 1,
+"values": [false]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("..:visible")
+tracks/2/path = NodePath("MarginContainer/Control/Control:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MarginContainer/Control/Control/VBoxContainer/Control:custom_minimum_size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MarginContainer/Control/UIContent:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(410, 108)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MarginContainer/Control/UIContent/VBoxContainer:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_edksq"]
@@ -183,10 +297,12 @@ states/RESET/position = Vector2(520, 100)
 transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_edksq"), "RESET", "PopIn", SubResource("AnimationNodeStateMachineTransition_hcq3r"), "PopIn", "PopOut", SubResource("AnimationNodeStateMachineTransition_dg7dw"), "PopOut", "RESET", SubResource("AnimationNodeStateMachineTransition_2xrph")]
 graph_offset = Vector2(-18, -112)
 
-[node name="PauseMenu" type="CanvasLayer" unique_id=752503177]
-layer = 9
+[node name="PauseMenu" type="CanvasLayer" unique_id=752503177 node_paths=PackedStringArray("buttons")]
+process_mode = 3
+layer = 11
 visible = false
 script = ExtResource("1_uijsi")
+buttons = [NodePath("Control/MarginContainer/Control/UIContent/VBoxContainer/Resume"), NodePath("Control/MarginContainer/Control/UIContent/VBoxContainer/Exit")]
 
 [node name="Control" type="Control" parent="." unique_id=1399705373]
 layout_mode = 3
@@ -220,24 +336,85 @@ theme_override_constants/margin_bottom = 16
 [node name="Control" type="Control" parent="Control/MarginContainer" unique_id=2782410]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Control/MarginContainer/Control" unique_id=377231417]
+[node name="Control" type="Control" parent="Control/MarginContainer/Control" unique_id=1055130818]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/Control/Control" unique_id=985725244]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -74.5
-offset_top = -44.0
-offset_right = 74.5
-offset_bottom = 44.0
+offset_left = -639.5
+offset_top = -61.5
+offset_right = 639.5
+offset_bottom = 61.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "Pause"
+scale = Vector2(0.25, 0.35)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_constants/separation = -8
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/Control/Control/VBoxContainer" unique_id=799760829]
+z_index = 1
+layout_mode = 2
+texture = ExtResource("2_1n8h6")
+
+[node name="Control" type="Control" parent="Control/MarginContainer/Control/Control/VBoxContainer" unique_id=1655532001]
+clip_contents = true
+layout_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Control/MarginContainer/Control/Control/VBoxContainer/Control" unique_id=241329552]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -638.0
+offset_top = -1159.0
+offset_right = 638.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("3_edksq")
+
+[node name="UIContent" type="Control" parent="Control/MarginContainer/Control" unique_id=1744363015]
+z_index = 10
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -200.0
+offset_right = 150.0
+offset_bottom = 199.9986
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="Label" type="Label" parent="Control/MarginContainer/Control/UIContent" unique_id=377231417]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -74.5
+offset_right = 74.5
+offset_bottom = 88.0
+grow_horizontal = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+text = "ui_pause"
 label_settings = SubResource("LabelSettings_0i88t")
 horizontal_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/Control/Label" unique_id=1221794527]
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/Control/UIContent/Label" unique_id=1221794527]
 modulate = Color(1, 1, 1, 0.5882353)
 show_behind_parent = true
 layout_mode = 1
@@ -249,6 +426,40 @@ grow_vertical = 2
 scale = Vector2(2, 2)
 pivot_offset_ratio = Vector2(0.5, 0.5)
 texture = SubResource("GradientTexture2D_0i88t")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/Control/UIContent" unique_id=715464857]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.5
+offset_top = -15.5
+offset_right = 39.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+alignment = 1
+
+[node name="Resume" type="Button" parent="Control/MarginContainer/Control/UIContent/VBoxContainer" unique_id=1002656571]
+layout_mode = 2
+theme = ExtResource("5_hcq3r")
+text = "ui_resume"
+flat = true
+script = ExtResource("6_hcq3r")
+metadata/_custom_type_script = "uid://bxcc237hqok38"
+
+[node name="Exit" type="Button" parent="Control/MarginContainer/Control/UIContent/VBoxContainer" unique_id=1888530828]
+layout_mode = 2
+theme = ExtResource("5_hcq3r")
+text = "ui_exit"
+flat = true
+script = ExtResource("6_hcq3r")
+button_action = 1
+metadata/_custom_type_script = "uid://bxcc237hqok38"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Control" unique_id=1423039153]
 libraries/ = SubResource("AnimationLibrary_edksq")

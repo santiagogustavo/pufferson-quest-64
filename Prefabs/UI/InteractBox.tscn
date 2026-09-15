@@ -1,0 +1,188 @@
+[gd_scene format=3 uid="uid://cnccihafsy5jg"]
+
+[ext_resource type="Texture2D" uid="uid://1w3ypwbe02mg" path="res://Textures/UI/InteractBox.png" id="1_kgbxw"]
+[ext_resource type="Script" uid="uid://b5ups7g2bcwgy" path="res://Scripts/UI/InteractBox.gd" id="1_nudlt"]
+[ext_resource type="PackedScene" uid="uid://4tfkpbq1bur8" path="res://Prefabs/UI/InputInstruction.tscn" id="2_eyvmh"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_0i88t"]
+size = Vector2(1.5, 0.3)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_eyvmh"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ckb4l"]
+resource_local_to_scene = true
+transparency = 4
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_eyvmh")
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="Animation" id="Animation_eyvmh"]
+resource_name = "PopIn"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.75, 0.75, 0.75), Vector3(1.1, 1.1, 1.1), Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:transparency")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_g7i0f"]
+resource_name = "PopOut"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1.1, 1.1, 1.1), Vector3(0.75, 0.75, 0.75)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:transparency")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_nudlt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:transparency")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g7i0f"]
+_data = {
+&"PopIn": SubResource("Animation_eyvmh"),
+&"PopOut": SubResource("Animation_g7i0f"),
+&"RESET": SubResource("Animation_nudlt")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_eyvmh"]
+animation = &"PopIn"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nudlt"]
+animation = &"PopOut"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g7i0f"]
+animation = &"RESET"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3fcss"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mem6n"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1eji2"]
+advance_mode = 2
+advance_condition = &"is_popped"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_flver"]
+advance_mode = 2
+advance_condition = &"is_not_popped"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_0i88t"]
+states/PopIn/node = SubResource("AnimationNodeAnimation_eyvmh")
+states/PopIn/position = Vector2(416, -27)
+states/PopOut/node = SubResource("AnimationNodeAnimation_nudlt")
+states/PopOut/position = Vector2(627, -27)
+states/RESET/node = SubResource("AnimationNodeAnimation_g7i0f")
+states/RESET/position = Vector2(524, 100)
+transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_3fcss"), "PopOut", "RESET", SubResource("AnimationNodeStateMachineTransition_mem6n"), "RESET", "PopIn", SubResource("AnimationNodeStateMachineTransition_1eji2"), "PopIn", "PopOut", SubResource("AnimationNodeStateMachineTransition_flver")]
+graph_offset = Vector2(-44, -115)
+
+[node name="InteractBox" type="Node3D" unique_id=708887836]
+script = ExtResource("1_nudlt")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=379007592]
+transparent_bg = true
+size = Vector2i(267, 55)
+
+[node name="TextureRect" type="TextureRect" parent="SubViewport" unique_id=1427525829]
+offset_right = 266.65176
+offset_bottom = 55.0
+texture = ExtResource("1_kgbxw")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="InputInstruction" parent="SubViewport/TextureRect" unique_id=1975978946 instance=ExtResource("2_eyvmh")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.325882
+offset_top = -15.5
+offset_right = 44.67415
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+actions = Array[int]([1])
+custom_label_translation = "ui_interact"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1224608736]
+transparency = 1.0
+mesh = SubResource("QuadMesh_0i88t")
+surface_material_override/0 = SubResource("StandardMaterial3D_ckb4l")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=525690312]
+libraries/ = SubResource("AnimationLibrary_g7i0f")
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1130746453]
+tree_root = SubResource("AnimationNodeStateMachine_0i88t")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/is_not_popped = false
+parameters/conditions/is_popped = false

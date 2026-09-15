@@ -10,6 +10,7 @@ var time_elapsed: float = 0.0
 var time_string: String = "00:00"
 
 func _ready() -> void:
+	#TranslationServer.set_locale("en")
 	update_mouse_mode()
 
 func _process(delta: float) -> void:
@@ -17,11 +18,21 @@ func _process(delta: float) -> void:
 	time_string = format_time(time_elapsed)
 
 func emit_dialog(
-	speaker_name: String,
+	speaker_name: Definitions.Characters,
 	speaker_text: String,
 	talk_time: float,
+	skippable: bool = false,
 ) -> void:
-	dialog.emit(speaker_name, speaker_text, talk_time)
+	var speaker_voice: AudioStream = load(Definitions.CharacterVoices[speaker_name])
+	var speaker_avatar: Texture2D = load(Definitions.CharacterAvatars[speaker_name])
+	dialog.emit(
+		Definitions.CharacterNames[speaker_name],
+		speaker_text,
+		talk_time,
+		speaker_voice,
+		speaker_avatar,
+		skippable,
+	)
 
 func update_life(value: int) -> void:
 	lives = value

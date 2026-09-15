@@ -2,6 +2,7 @@ extends Label
 class_name LabelTyper
 
 signal typed
+signal played
 
 @export var typing_time: float = 0.5
 
@@ -20,8 +21,15 @@ func play_effect() -> void:
 	text = ""
 	type_current_index()
 
+func skip_effect() -> void:
+	clear_current_timer()
+	current_index = initial_text.length() - 1
+	has_played = true
+	text = initial_text
+	played.emit()
+
 func clear_current_timer() -> void:
-	if current_timer:
+	if current_timer and current_timer.timeout.is_connected(type_current_index):
 		current_timer.timeout.disconnect(type_current_index)
 
 func set_initial_text(init_text: String) -> void:
@@ -33,6 +41,7 @@ func compute_individual_key_time() -> void:
 func type_current_index() -> void:
 	if current_index >= initial_text.length():
 		has_played = true
+		played.emit()
 	else:
 		text += initial_text[current_index]
 		typed.emit(initial_text[current_index])

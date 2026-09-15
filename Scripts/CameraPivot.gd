@@ -1,6 +1,7 @@
 extends Marker3D
 class_name CameraPivot
 
+@export var enable_controls: bool = true
 @export var look_speed: float = 5.0
 @export var follow_camera: bool = true
 @export_range(60.0, 90.0) var look_vertical_clamp_degrees: float = 60.0
@@ -19,6 +20,8 @@ func _ready() -> void:
 	global_rotation = reset_rotation
 
 func _process(delta: float) -> void:
+	if !enable_controls:
+		return
 	compute_camera()
 	compute_look_stick()
 	compute_follow(delta)

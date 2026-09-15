@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://4tfkpbq1bur8"]
+
+[ext_resource type="Script" uid="uid://cg03wfwmokjdy" path="res://Scripts/UI/InputInstruction.gd" id="1_7boip"]
+[ext_resource type="FontFile" uid="uid://dqjtgmaxvn45n" path="res://Fonts/Mermaid.ttf" id="2_mvp5x"]
+[ext_resource type="Script" uid="uid://bbnrfkrua41wr" path="res://addons/awesome_input_icons/classes/InputIconTextureRect.gd" id="3_7boip"]
+[ext_resource type="Shader" uid="uid://mhflhig4acni" path="res://Materials/Shaders/Outline.gdshader" id="3_yy3td"]
+[ext_resource type="Texture2D" uid="uid://dranht6ppvqmq" path="res://addons/awesome_input_icons/assets/input_icons/joy/joy_a.svg" id="4_wajlg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wajlg"]
+shader = ExtResource("3_yy3td")
+shader_parameter/thickness = 6.000000285
+shader_parameter/ring_count = 16
+shader_parameter/ring_offset = 0.0
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/border_clipping_fix = true
+shader_parameter/aspect_ratio = 1.0
+shader_parameter/square_border = false
+shader_parameter/offset = Vector2(0, -2)
+shader_parameter/max_or_add = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_5hcvw"]
+font = ExtResource("2_mvp5x")
+font_size = 22
+font_color = Color(1, 0.93733335, 0.53, 1)
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="InputInstruction" type="HBoxContainer" unique_id=1975978946]
+offset_right = 59.0
+offset_bottom = 17.0
+theme_override_constants/separation = 8
+alignment = 1
+script = ExtResource("1_7boip")
+actions = Array[int]([0])
+custom_label_translation = "ui_skip"
+
+[node name="InputIconTextureRect" type="TextureRect" parent="." unique_id=1191347333]
+material = SubResource("ShaderMaterial_wajlg")
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+texture = ExtResource("4_wajlg")
+expand_mode = 1
+stretch_mode = 4
+script = ExtResource("3_7boip")
+action_name = &"ui_accept"
+metadata/_custom_type_script = "uid://bbnrfkrua41wr"
+
+[node name="Label" type="Label" parent="." unique_id=5600069]
+layout_mode = 2
+text = "Action"
+label_settings = SubResource("LabelSettings_5hcvw")
+vertical_alignment = 1

@@ -5,8 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://bjcddkif4xobe" path="res://Textures/UI/DialogBox.png" id="1_5243g"]
 [ext_resource type="FontFile" uid="uid://dqjtgmaxvn45n" path="res://Fonts/Mermaid.ttf" id="3_5243g"]
 [ext_resource type="Script" uid="uid://dujci3mn5u362" path="res://Scripts/UI/LabelTyper.gd" id="5_54nx3"]
-[ext_resource type="Texture2D" uid="uid://d2nnyd5jdq6at" path="res://Textures/UI/Puff.png" id="7_78pa0"]
-[ext_resource type="AudioStream" uid="uid://b154fct8cmqtk" path="res://Sounds/Characters/Voice5.wav" id="7_caj01"]
+[ext_resource type="Texture2D" uid="uid://d2nnyd5jdq6at" path="res://Textures/UI/DialogAvatars/Pufferson.png" id="7_78pa0"]
+[ext_resource type="AudioStream" uid="uid://b154fct8cmqtk" path="res://Sounds/Characters/Pufferson/Voice.wav" id="7_caj01"]
+[ext_resource type="PackedScene" uid="uid://4tfkpbq1bur8" path="res://Prefabs/UI/InputInstruction.tscn" id="7_ira2r"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0i88t"]
 font = ExtResource("1_7q33j")
@@ -261,15 +262,15 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -75.19754
-offset_top = -178.15474
-offset_right = 74.80246
-offset_bottom = -28.15474
+offset_left = -129.02625
+offset_top = -188.49487
+offset_right = 120.72986
+offset_bottom = -38.494865
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset_ratio = Vector2(0.5, 1)
 texture = ExtResource("7_78pa0")
-expand_mode = 1
+expand_mode = 3
 stretch_mode = 5
 
 [node name="Text" type="Label" parent="MarginContainer/Control/BoxContainer/Box" unique_id=549707233]
@@ -284,6 +285,20 @@ clip_text = true
 text_overrun_behavior = 5
 script = ExtResource("5_54nx3")
 metadata/_custom_type_script = "uid://dujci3mn5u362"
+
+[node name="SkipLabel" parent="MarginContainer/Control/BoxContainer/Box" unique_id=1975978946 instance=ExtResource("7_ira2r")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -110.66669
+offset_top = -76.0
+offset_right = -18.666687
+offset_bottom = -53.0
+grow_horizontal = 0
+grow_vertical = 0
 
 [node name="Voice" type="AudioStreamPlayer2D" parent="MarginContainer/Control/BoxContainer/Box" unique_id=280482356]
 stream = SubResource("AudioStreamRandomizer_q4nii")

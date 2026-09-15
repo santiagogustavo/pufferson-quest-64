@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cbe0cpxaxqvho" path="res://Textures/UI/HUD/Coin.png" id="1_ei6vf"]
 [ext_resource type="FontFile" uid="uid://dpibfaqd1k33i" path="res://Fonts/MagicVintage.ttf" id="2_4ms3g"]
 [ext_resource type="Shader" uid="uid://cwgayrdd048ak" path="res://Materials/Shaders/Skew.gdshader" id="3_5gb74"]
-[ext_resource type="Texture2D" uid="uid://d2nnyd5jdq6at" path="res://Textures/UI/Puff.png" id="3_edklb"]
+[ext_resource type="Texture2D" uid="uid://d2nnyd5jdq6at" path="res://Textures/UI/DialogAvatars/Pufferson.png" id="3_edklb"]
 [ext_resource type="Texture2D" uid="uid://bmmpmqi1o32jd" path="res://Textures/UI/HUD/Hourglass.png" id="3_ljlyi"]
 [ext_resource type="Texture2D" uid="uid://bnbv7ip2q7pp7" path="res://Textures/UI/HUD/Quill.png" id="7_ljlyi"]
 
